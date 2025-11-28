@@ -35,6 +35,13 @@ sudo pacman -S base-devel lua
 │   │   ├── core/
 │   │   │   ├── dataset.c
 │   │   │   ├── dataset.h
+│    │   ├── lcore/
+│    │   │   ├── parser.h
+│    │   │   └── parser.c
+│    │   │   └── ast.h
+│    │   │   ├── ast.c
+│    │   │   ├── lexer.h
+│    │   │   └── lexer.c
 │   │   │
 │   │   ├── lua_bindings/
 │   │   │

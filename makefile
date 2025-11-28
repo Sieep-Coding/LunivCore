@@ -6,11 +6,13 @@ CORE_DIR = src/C/core
 
 LUA_SCRIPT = src/lua/config.lua
 
-CFLAGS = -Wall -Wextra
-LDFLAGS = -llua -lm
+CFLAGS = -Wall -Wextra -I$(SRC_DIR)
+LDFLAGS = -llua -lm 
 
 SOURCES = $(wildcard $(SRC_DIR)/*.c) \
-          $(wildcard $(CORE_DIR)/*.c)
+          $(wildcard $(CORE_DIR)/*.c) \
+          $(wildcard $(SRC_DIR)/lcore/*.c)
+
 
 OBJECTS = $(SOURCES:.c=.o)
 
