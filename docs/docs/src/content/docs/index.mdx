@@ -1,22 +1,22 @@
 ---
-title: LunivCore
+title: LunivCore, Business Intelligence As Code
 description: C/Lua Business Intelligence Engine from Luniv Consulting.
 template: splash
 hero:
-  tagline: A lightweight, expressive, efficient, extensible, statically typed BI language with a Lua-inspired syntax, powered by a compact C/Lua execution core.
+  tagline: A lightweight, expressive, efficient, extensible BI language with a Lua-inspired syntax, powered by a compact C/Lua execution core.
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Getting Started (The DSL)
+    - text: Read the Docs
       link: /reference/example/
       icon: right-arrow
-    - text: C-Binding Reference
-      link: /reference/example/
+    - text: Book a Demo
+      link: https://luniv.tech/contact
       icon: external
       variant: minimal
 ---
 
-import { Card, CardGrid, LinkButton } from '@astrojs/starlight/components';
+import { Aside, Card, CardGrid, LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
 ## What is LunivCore?
 
@@ -48,17 +48,109 @@ This documentation is designed to help you integrate, extend, and deploy the Lun
   </Card>
 </CardGrid>
 
-# Core Concepts
+### Deliver High-Impact Data Products
+Combine data visualization components with an intuitive layout engine to build **responsive, interactive data products**. Easily publish them internally for your teams, share them directly with customers, or seamlessly embed them into any existing application.
 
-LunivCore leverages the performance benefits of C while providing the scripting flexibility of Lua.
+<Tabs>
+    <TabItem label="Articles">
+        Transform complex data stories into **stunning, visual articles** for news, deep research, or social science publication. Utilize narrative visualization features to guide your readers through your insights.
+    </TabItem>
+    <TabItem label="Data Apps">
+        Build **powerful, custom data applications** that enable your users to filter, interact with, and explore data dynamically. Deploy interactive tools directly to your internal teams or end-users.
+    </TabItem>
+    <TabItem label="Dashboards">
+        Design and deploy **mission-critical performance dashboards** that provide instant, actionable insights. Monitor key metrics (KPIs) with highly customizable charts and a responsive, unified view.
+    </TabItem>
+</Tabs>
 
-- **Host Language (C):** Manages memory and executes computationally intensive tasks.  
-- **Guest Language (Lua):** Provides a clean, dynamic scripting interface (the DSL) that communicates with C via a defined API.  
-- **The Glue:** The Lua C API acts as the bridge, passing data back and forth efficiently.
+---
+
+### Core Concepts
+
+LunivCore leverages the **performance benefits of C** while providing the **scripting flexibility of Lua** for a unique BI-as-Code experience.
+
+<CardGrid stagger>
+    <Card title="Business Intelligence As Code" icon="pencil">
+        Adopt **Simple Syntax** for data operations, enabling robust **version control** and **unit testing** of your reports and dashboards.
+    </Card>
+    <Card title="Host Language (C)" icon="info">
+        The C core efficiently **manages memory** and executes **computationally intensive tasks** for high-speed data processing.
+    </Card>
+    <Card title="Guest Language (Lua)" icon="document">
+        Provides a **clean, dynamic scripting interface (DSL)** for users, which communicates with the C core via a defined, stable API.
+    </Card>
+    <Card title="The Glue: Lua C API" icon="right-arrow">
+        This API acts as the secure, high-speed bridge, efficiently **passing data and commands** back and forth between the C and Lua environments.
+    </Card>
+</CardGrid>
+
+---
+
+### LunivCore Engine
+
+The LunivCore engine is built for **high-performance and enterprise-grade scaling**, combining speed with transparency.
+
+<CardGrid>
+    <Card title="Blazing Fast Performance" icon="rocket">
+        Achieve **Subsecond Queries**, allowing you to analyze billions of rows of data in moments.
+        <LinkButton
+            href="/reference/example/"
+            variant="primary"
+            icon="right-arrow"
+            iconPlacement="end"
+        >
+            Get Started
+        </LinkButton>
+    </Card>
+
+    <Card title="Open-Source Forever" icon="star">
+        The core execution engine of LunivCore is and will always remain **open-source**.
+        <LinkButton
+            href="https://github.com/sieep-coding/lunivcore"
+            variant="secondary"
+            icon="right-arrow"
+            iconPlacement="end"
+        >
+            View on GitHub
+        </LinkButton>
+    </Card>
+</CardGrid>
+
+---
+
+# Installation For Devlopers
+
+Requires git, build tools, and a C compiler.
+
+<Steps>
+
+1. Use your terminal:
+
+	```bash
+	git clone https://github.com/Sieep-Coding/LunivCore
+	```
+
+2. `cd` into the source code:
+	```bash
+	cd LunivCore
+	```
+3. Run the installation command
+	```bash
+	make install
+	```
+4. Run the installation command
+	```bash
+	lunivcore examples/helloworld.lcore
+	```
+</Steps>
+
+---
 
 # Need Extra Help?
 
 LunivCore is built and maintained by the passionate dev team at [Luniv Consulting](https://luniv.tech/).
+
+<Aside>Get started right away by filling out our [contact form](https://www.luniv.tech/contact).</Aside>
 
 # Support or Invest
 
@@ -67,7 +159,7 @@ LunivCore is built and maintained by the passionate dev team at [Luniv Consultin
     Explore how LunivCore enables a programmable analytics engine built on a compact C/Lua runtime. Review the technical roadmap, commercial applications, and opportunities for early investment.
     <LinkButton
       href="/invest/roadmap"
-      variant="secondary"
+      variant="primary"
       icon="right-arrow"
       iconPlacement="end"
     >
@@ -79,7 +171,7 @@ LunivCore is built and maintained by the passionate dev team at [Luniv Consultin
     Contribute to the open-source ecosystem by starring the repository, submitting improvements, or joining community development efforts.
     <LinkButton
       href="https://github.com/sieep-coding/lunivcore"
-      variant="secondary"
+      variant="minimal"
       icon="right-arrow"
       iconPlacement="end"
     >
@@ -88,3 +180,4 @@ LunivCore is built and maintained by the passionate dev team at [Luniv Consultin
   </Card>
 </CardGrid>
 
+ 
