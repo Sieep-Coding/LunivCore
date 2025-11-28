@@ -1,40 +1,49 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: LunivCore
+description: C/Lua Business Intelligence Engine from Luniv Consulting.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: A brand new BI-as-Code DSL built on a C/Lua core.
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Getting Started (The DSL)
+      link: /guides/dsl-setup/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: C-Binding Reference
+      link: /reference/c-api/
       icon: external
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Next Steps for LunivCore Developers
+
+This documentation is designed to help you integrate, extend, and deploy the LunivCore engine effectively.
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+  <Card title="Build the Engine" icon="engine">
+    Learn how to compile the bi_tool executable using the provided Makefile and link the Lua runtime library.
+  </Card>
+  <Card title="Extend the C API" icon="pencil">
+    Dive into Userdata and Metatables to add new high-performance data operations (like CSV loading or sorting) to the C core.
+  </Card>
+  <Card title="Write a Report" icon="document">
+    Start creating your first BI-as-Code reports using the BI.new() and dataset:plot() DSL syntax in the src/lua directory.
+  </Card>
+  <Card title="File Structure" icon="folder">
+    Review the directory structure: src/C/ for engine logic and src/lua/ for user DSL scripts.
+  </Card>
+  <Card title="Contribution Guide" icon="setting">
+    Check out the contribution guide to understand coding standards and PR workflows for extending the C core.
+  </Card>
 </CardGrid>
+
+## Core Concepts
+
+LunivCore leverages the performance benefits of C while providing the scripting flexibility of Lua.
+
+- **Host Language (C):** Manages memory and executes computationally intensive tasks.  
+- **Guest Language (Lua):** Provides a clean, dynamic scripting interface (the DSL) that communicates with C via a defined API.  
+- **The Glue:** The Lua C API acts as the bridge, passing data back and forth efficiently.
