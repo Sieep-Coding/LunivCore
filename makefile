@@ -1,22 +1,29 @@
 CC = gcc
 TARGET = bi_tool
+
 SRC_DIR = src/C
-LUA_SCRIPT = src/lua/report.lua
+CORE_DIR = src/C/core
+
+LUA_SCRIPT = src/lua/config.lua
+
 CFLAGS = -Wall -Wextra
 LDFLAGS = -llua -lm
 
-SOURCES = $(wildcard $(SRC_DIR)/*.c)
+SOURCES = $(wildcard $(SRC_DIR)/*.c) \
+          $(wildcard $(CORE_DIR)/*.c)
+
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(TARGET)
 
-$(TARGET): $(SOURCES)
-	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+$(TARGET): $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $@ $(LDFLAGS)
+
 run: $(TARGET)
-	@echo "--- Running $(TARGET) with $(LUA_SCRIPT) ---"
+	@echo "--- Running $(TARGET) ---"
 	./$(TARGET)
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET) $(OBJECTS)
 
 .PHONY: all run clean
