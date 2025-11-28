@@ -25,3 +25,35 @@ Since this project is built on CachyOS, you will need the standard development t
 sudo pacman -S base-devel lua
 ```
 
+structure
+```text
+/project-root
+│
+├── Makefile
+├── src/
+│   ├── C/
+│   │   ├── core/
+│   │   │   ├── dataset.c
+│   │   │   ├── dataset.h
+│   │   │   ├── types.h
+│   │   │   └── errors.h
+│   │   │
+│   │   ├── lua_bindings/
+│   │   │   ├── bi_lib.c
+│   │   │   └── bi_lib.h
+│   │   │
+│   │   ├── main.c
+│   │   └── CMakeLists.txt (optional)
+│   │
+│   ├── lua/
+│   │   ├── config.lua
+│   │   └── dsl/
+│   │       ├── dataset.lua
+│   │       └── utils.lua
+│   │
+│   └── include/ (optional)
+│
+└── docs/
+
+```
+
