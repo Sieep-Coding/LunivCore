@@ -1,13 +1,11 @@
 # LunivCore: C/Lua Business Intelligence Engine from [Luniv Consulting](https://luniv.tech/)
 
-[!WARNING]
+> [!WARNING]
 > Work in Progress. Not ready for production use.
----
 
 ## LunivCore
 The goal of `LunivCore` is to enable **"BI-as-Code"**, allowing analysts to define complex reports without requiring re-compilation of the core engine.
 
----
 
 ## LunivCore Features
 * **High Performance:** Core data structure handling and rendering implemented in C.
@@ -16,7 +14,6 @@ The goal of `LunivCore` is to enable **"BI-as-Code"**, allowing analysts to defi
 * **Portable:** Built using standard C (C99) and the embeddable Lua library.
 * **Support:** On-going, lifetime support from the passionate dev team at [Luniv Consulting](https://luniv.tech/)
 
----
 
 ## Getting Started
 
