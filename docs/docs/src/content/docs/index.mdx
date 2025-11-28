@@ -8,15 +8,15 @@ hero:
     file: ../../assets/houston.webp
   actions:
     - text: Getting Started (The DSL)
-      link: /guides/dsl-setup/
+      link: /reference/example/
       icon: right-arrow
     - text: C-Binding Reference
-      link: /reference/c-api/
+      link: /reference/example/
       icon: external
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkButton } from '@astrojs/starlight/components';
 
 ## Next Steps for LunivCore Developers
 
@@ -25,6 +25,14 @@ This documentation is designed to help you integrate, extend, and deploy the Lun
 <CardGrid stagger>
   <Card title="Build the Engine" icon="engine">
     Learn how to compile the bi_tool executable using the provided Makefile and link the Lua runtime library.
+	<LinkButton
+	href="https://docs.astro.build"
+	variant="secondary"
+	icon="right-arrow"
+	iconPlacement="end"
+	>
+  Get Started
+</LinkButton>
   </Card>
   <Card title="Extend the C API" icon="pencil">
     Dive into Userdata and Metatables to add new high-performance data operations (like CSV loading or sorting) to the C core.
@@ -40,10 +48,14 @@ This documentation is designed to help you integrate, extend, and deploy the Lun
   </Card>
 </CardGrid>
 
-## Core Concepts
+# Core Concepts
 
 LunivCore leverages the performance benefits of C while providing the scripting flexibility of Lua.
 
 - **Host Language (C):** Manages memory and executes computationally intensive tasks.  
 - **Guest Language (Lua):** Provides a clean, dynamic scripting interface (the DSL) that communicates with C via a defined API.  
 - **The Glue:** The Lua C API acts as the bridge, passing data back and forth efficiently.
+
+# Need Extra Help?
+
+LunivCore is built and maintained by the passionate dev team at [Luniv Consulting](https://luniv.tech/).
