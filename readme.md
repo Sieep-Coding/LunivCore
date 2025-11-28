@@ -43,7 +43,6 @@ structure
 │   │   │   └── bi_lib.h
 │   │   │
 │   │   ├── main.c
-│   │   └── CMakeLists.txt (optional)
 │   │
 │   ├── lua/
 │   │   ├── config.lua
