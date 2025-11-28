@@ -1,0 +1,12 @@
+# Sales Report Q1
+
+dataset Sales "Q1 Regional Sales" {
+    North: 340
+    South: 120
+    East: 210
+    West: 450
+}
+
+plot Sales as bar
+
+export html "sales_report.html"

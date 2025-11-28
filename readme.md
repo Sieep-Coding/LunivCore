@@ -25,7 +25,7 @@ Since this project is built on CachyOS, you will need the standard development t
 sudo pacman -S base-devel lua
 ```
 
-structure
+### Current structure
 ```text
 /project-root
 │
@@ -35,12 +35,8 @@ structure
 │   │   ├── core/
 │   │   │   ├── dataset.c
 │   │   │   ├── dataset.h
-│   │   │   ├── types.h
-│   │   │   └── errors.h
 │   │   │
 │   │   ├── lua_bindings/
-│   │   │   ├── bi_lib.c
-│   │   │   └── bi_lib.h
 │   │   │
 │   │   ├── main.c
 │   │
@@ -49,10 +45,6 @@ structure
 │   │   └── dsl/
 │   │       ├── dataset.lua
 │   │       └── utils.lua
-│   │
-│   └── include/ (optional)
-│
-└── docs/
 
 ```
 
