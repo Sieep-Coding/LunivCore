@@ -18,34 +18,77 @@ import { Aside, Card, CardGrid, LinkButton, Steps, Tabs, TabItem } from '@astroj
 # See It In Action
 
 Instantly start answering the most important questions for your business.
+<Tabs starlight>
+    <TabItem label=".lcore file">
+        This `.lcore` file can be interpreted directly:
 
-This `.lcore` file:
+    ```bash
+    # Sales Report Q1 (examples/helloworld.lcore)
 
-```bash
-# Sales Report Q1 (examples/helloworld.lcore)
+    dataset Sales "Q1 Regional Sales" {
+        North: 340
+        South: 120
+        East: 210
+        West: 450
+    }
 
-dataset Sales "Q1 Regional Sales" {
-    North: 340
-    South: 120
-    East: 210
-    West: 450
-}
+    plot Sales as bar
 
-plot Sales as bar
+    ```
 
-```
+    #### Outputs:
 
-#### Outputs:
+    ```text
+    --- Q1 Regional Sales ---
+    North      | ██████████████████████████████████ (340)
+    South      | ████████████ (120)
+    East       | █████████████████████ (210)
+    West       | █████████████████████████████████████████████ (450)
+    ----------------
+    ```
+    </TabItem>
+    <TabItem label="Lua file">
+    Or bind with a `.lua` file for even more power through conditionals, dynamic typing, automatic memory management, and first-class functions:
 
-```text
---- Q1 Regional Sales ---
-North      | ██████████████████████████████████ (340)
-South      | ████████████ (120)
-East       | █████████████████████ (210)
-West       | █████████████████████████████████████████████ (450)
-----------------
-```
+    ```lua
+      print("BI Engine: Starting Analysis...")
 
+      local sales = BI.new("Q1 Regional Sales")
+
+      sales:add("North", 340)
+      sales:add("South", 120)
+      sales:add("East", 210)
+      sales:add("West", 450)
+
+      local projection = 50
+      if (projection >= 50) then
+          sales:add("Proj.", projection * 2)
+          print("Conditionals with LunivCore!")
+      end
+
+      sales:plot()
+
+      print("Analysis Complete.")
+    ```
+
+    #### Outputs:
+
+    ```text
+    BI Engine: Starting Analysis...
+    Conditionals with LunivCore!
+
+    --- Q1 Regional Sales ---
+    North      | ██████████████████████████████████ (340)
+    South      | ████████████ (120)
+    East       | █████████████████████ (210)
+    West       | █████████████████████████████████████████████ (450)
+    Proj.      | ██████████ (100)
+    ----------------
+    Analysis Complete.
+    ```
+
+    </TabItem>
+    </Tabs>
 ## What is LunivCore?
 
 This documentation is designed to help you integrate, extend, and deploy the LunivCore engine effectively.
