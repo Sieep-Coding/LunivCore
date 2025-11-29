@@ -1,3 +1,3 @@
 # lcore
 
-`lcore` is the primary compiler for [LunivCore](https://github.com/Sieep-Coding/LunivCore/)
+`lcore` is the primary interpreter for [LunivCore](https://github.com/Sieep-Coding/LunivCore/)
