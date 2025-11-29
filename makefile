@@ -1,5 +1,5 @@
 CC = gcc
-TARGET = bi_tool
+TARGET = lcore
 
 SRC_DIR = src/C
 CORE_DIR = src/C/core

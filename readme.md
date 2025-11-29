@@ -27,31 +27,36 @@ sudo pacman -S base-devel lua
 
 ### Current structure
 ```text
-/project-root
+/lunivcore
 │
 ├── Makefile
+│
 ├── src/
-│   ├── C/
-│   │   ├── core/
-│   │   │   ├── dataset.c
-│   │   │   ├── dataset.h
-│    │   ├── lcore/
-│    │   │   ├── parser.h
-│    │   │   └── parser.c
-│    │   │   └── ast.h
-│    │   │   ├── ast.c
-│    │   │   ├── lexer.h
-│    │   │   └── lexer.c
-│   │   │
-│   │   ├── lua_bindings/
-│   │   │
-│   │   ├── main.c
 │   │
-│   ├── lua/
-│   │   ├── config.lua
-│   │   └── dsl/
-│   │       ├── dataset.lua
-│   │       └── utils.lua
+│   ├── C/               
+│   │   │
+│   │   ├── core/             
+│   │   │   ├── dataset.c
+│   │   │   └── dataset.h
+│   │   ├── lcore/           
+│   │   │   ├── ast.c
+│   │   │   ├── ast.h
+│   │   │   ├── lexer.c
+│   │   │   ├── lexer.h
+│   │   │   ├── parser.c
+│   │   │   └── parser.h          
+│   │   │   ├── render.c
+│   │   │   └── render.h
+│   │   ├── lua_bindings/       
+│   │   └── main.c              
+│   └── lua/           
+│       │
+│       ├── config.lua          
+│       └── dsl/
+│           ├── dataset.lua
+│           └── utils.lua
+└── examples/
+    └── helloworld.lcore
 
 ```
 

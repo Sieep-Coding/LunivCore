@@ -11,6 +11,7 @@
 #include "lcore/parser.h"
 #include "lcore/ast.h"
 #include "lcore/lexer.h"
+#include "lcore/render.h"
 
 /* Forward declarations of Lua functions */
 static int l_dataset_new(lua_State *L);
@@ -61,68 +62,36 @@ static int l_dataset_plot(lua_State *L) {
 
 int main(int argc, char **argv) {
     if (argc < 2) {
-        fprintf(stderr, "Usage: %s <file.lua|file.lcore>\n", argv[0]);
+        printf("Usage: %s <file.lcore>\n", argv[0]);
         return 1;
     }
 
-    const char *filename = argv[1];
+    FILE *f = fopen(argv[1], "r");
+    if (!f) { perror("File open failed"); return 1; }
 
-    if (strstr(filename, ".lua")) {
-        /* Legacy Lua execution */
-        lua_State *L = luaL_newstate();
-        luaL_openlibs(L);
+    fseek(f, 0, SEEK_END);
+    long len = ftell(f);
+    fseek(f, 0, SEEK_SET);
 
-        /* metatable for userdatas */
-        luaL_newmetatable(L, "BI.Dataset");
-        lua_pushvalue(L, -1);
-        lua_setfield(L, -2, "__index");
-        luaL_setfuncs(L, dataset_methods, 0);
+    char *src = malloc(len + 1);
+    fread(src, 1, len, f);
+    src[len] = '\0';
+    fclose(f);
 
-        /* global BI table */
-        luaL_newlib(L, bi_lib_funcs);
-        lua_setglobal(L, "BI");
+    Lexer lexer;
+    lexer_init(&lexer, src);
 
-        if (luaL_dofile(L, filename) != LUA_OK) {
-            fprintf(stderr, "Error: %s\n", lua_tostring(L, -1));
-        }
+    Parser parser;
+    parser_init(&parser, &lexer);
 
-        lua_close(L);
+    ASTNode *root = parser_parse(&parser);
 
-    } else if (strstr(filename, ".lcore")) {
-        /* LCore execution */
-        FILE *fp = fopen(filename, "r");
-        if (!fp) {
-            perror("fopen");
-            return 1;
-        }
-
-        fseek(fp, 0, SEEK_END);
-        long size = ftell(fp);
-        fseek(fp, 0, SEEK_SET);
-
-        char *source = malloc(size + 1);
-        fread(source, 1, size, fp);
-        source[size] = '\0';
-        fclose(fp);
-
-        Lexer lexer;
-        lexer_init(&lexer, source);
-
-        Parser parser;
-        parser_init(&parser, &lexer);
-
-        ASTNode *ast = parser_parse(&parser);
-
-        /* Executor: traverse AST and call Lua/C functions (not implemented yet) */
-        printf("Parsed LCore AST. Root node type: %d\n", ast->type);
-
-        ast_free(ast);
-        free(source);
-
-    } else {
-        fprintf(stderr, "Unsupported file type: %s\n", filename);
-        return 1;
+    for (size_t i = 0; i < root->child_count; i++) {
+        ASTNode *child = root->children[i];
+        if (child->type == NODE_DATASET) render_dataset(child);
     }
 
+    ast_free(root);
+    free(src);
     return 0;
 }
