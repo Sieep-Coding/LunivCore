@@ -18,6 +18,10 @@ export default defineConfig({
 			],
 			sidebar: [
 				{
+					label: 'Start Here',
+					autogenerate: { directory: 'getting-started' },
+				},
+				{
 					label: 'Guides',
 					items: [
 						{ label: 'Example Guide', slug: 'guides/example' },
