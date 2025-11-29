@@ -18,6 +18,37 @@ hero:
 
 import { Aside, Card, CardGrid, LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
+# See It In Action
+
+Instantly start answering the most important questions for your business.
+
+This `.lcore` file:
+
+```bash
+# Sales Report Q1 (examples/helloworld.lcore)
+
+dataset Sales "Q1 Regional Sales" {
+    North: 340
+    South: 120
+    East: 210
+    West: 450
+}
+
+plot Sales as bar
+
+```
+
+#### Outputs:
+
+```text
+--- Q1 Regional Sales ---
+North      | ██████████████████████████████████ (340)
+South      | ████████████ (120)
+East       | █████████████████████ (210)
+West       | █████████████████████████████████████████████ (450)
+----------------
+```
+
 ## What is LunivCore?
 
 This documentation is designed to help you integrate, extend, and deploy the LunivCore engine effectively.
@@ -131,7 +162,7 @@ Requires git, build tools, and a C compiler.
 	```bash
 	make
 	```
-4. Run the installation command
+4. Display the sample chart
 	```bash
 	./lcore examples/helloworld.lcore
 	```

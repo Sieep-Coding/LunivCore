@@ -1,4 +1,4 @@
-# Sales Report Q1
+# Sales Report Q1 (examples/helloworld.lcore)
 
 dataset Sales "Q1 Regional Sales" {
     North: 340
@@ -8,5 +8,3 @@ dataset Sales "Q1 Regional Sales" {
 }
 
 plot Sales as bar
-
-export html "sales_report.html"
