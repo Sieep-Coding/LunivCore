@@ -1,4 +1,5 @@
 bi_tool
+lcore
 
 *.o
 *.a
