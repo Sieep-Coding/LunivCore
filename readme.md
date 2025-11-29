@@ -3,6 +3,37 @@
 > [!WARNING]
 > Work in Progress. Not ready for production use.
 
+# See It In Action
+
+Instantly start answering the most important questions for your business.
+
+This `.lcore` file:
+
+```bash
+# Sales Report Q1 (examples/helloworld.lcore)
+
+dataset Sales "Q1 Regional Sales" {
+    North: 340
+    South: 120
+    East: 210
+    West: 450
+}
+
+plot Sales as bar
+
+```
+
+#### Outputs:
+
+```text
+--- Q1 Regional Sales ---
+North      | ██████████████████████████████████ (340)
+South      | ████████████ (120)
+East       | █████████████████████ (210)
+West       | █████████████████████████████████████████████ (450)
+----------------
+```
+
 ## LunivCore
 The goal of `LunivCore` is to enable **"BI-as-Code"**, allowing analysts to define complex reports without requiring re-compilation of the core engine.
 
