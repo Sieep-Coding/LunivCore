@@ -8,3 +8,11 @@ dataset Sales "Q1 Regional Sales" {
 }
 
 plot Sales as bar
+
+dataset Sales2 "Q2 Regional Sales" {
+    North: 140
+    South: 620
+    East: 510
+    West: 250
+}
+plot Sales2 as bar
