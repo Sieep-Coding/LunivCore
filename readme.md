@@ -9,6 +9,7 @@ The goal of `LunivCore` is to enable **"BI-as-Code"**, allowing analysts to defi
 
 ## LunivCore Features
 * **High Performance:** Core data structure handling and rendering implemented in C.
+* **Built-in Compiler:** View the powerful [lcore](https://github.com/Sieep-Coding/LunivCore/tree/main/src/C/lcore) compiler.
 * **Clean DSL:** Define datasets, add data points, and plot results using simple, object-oriented Lua syntax (`dataset:add()`, `dataset:plot()`).
 * **Extensible:** Easily add new C-backed methods (e.g., `dataset:filter()`, `dataset:calculate_average()`) to the Lua object system via Userdata and Metatables.
 * **Portable:** Built using standard C (C99) and the embeddable Lua library.
