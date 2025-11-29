@@ -1,5 +1,7 @@
 # LunivCore: C/Lua Business Intelligence Engine from [Luniv Consulting](https://luniv.tech/)
 
+Get started by reading the [docs.](https://lunivcore.vercel.app/)
+
 > [!WARNING]
 > Work in Progress. Not ready for production use.
 
