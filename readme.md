@@ -1,11 +1,25 @@
-# LunivCore: C/Lua Business Intelligence Engine from [Luniv Consulting](https://luniv.tech/)
+<div id="top" align="center">
+    
+![](assets/lunivcore-logo.png)
 
-Get started by reading the [docs.](https://lunivcore.vercel.app/)
+##### Business Intelligence as Code: Generate reports using `lcore`, a SQL and markdown inspired language.
+##### Or use with [Lua](https://www.lua.org/)
+##### Get started by reading the [docs.](https://lunivcore.vercel.app/)
 
-> [!WARNING]
-> Work in Progress. Not ready for production use.
+</div>
+
+## Why Now?
+The goal of `LunivCore` is to enable **"BI-as-Code"**, allowing analysts to define complex reports without requiring re-compilation of the core engine.
+
+> I built `LunivCore` after getting tired of the constraints of traditional enterprise BI platforms. Instead of relying on a Markdown-driven system like [evidence](https://github.com/evidence-dev/evidence/), I wanted a lower-level foundation. Something lean, predictable, and fully under my control. Using C and Lua gives me that flexibility.
+>
+> This gives me the freedom to layer features on top such as Markdown rendering, web output, and anything else in deliberate manner.
+>
+>  Nick, LunivCore creator
 
 # See It In Action
+
+LunivCore is an open-source, engineer focused alternative to PowerBI, Tableau, and other business intelligence tool.
 
 Instantly start answering the most important questions for your business.
 
@@ -36,9 +50,14 @@ West       | ██████████████████████�
 ----------------
 ```
 
-## LunivCore
-The goal of `LunivCore` is to enable **"BI-as-Code"**, allowing analysts to define complex reports without requiring re-compilation of the core engine.
+LunivCore generates a terminal-dashboard or website from markdown-inspired `.lcore` or `Lua` files:
 
+- **Low-level** framework engineered for integration anywhere that supports C, including microcontrollers, websites, servers, and more.
+- **SQL-like statements** inside markdown-inspired files to run queries against your data sources
+- **Charts and components** are rendered using these query results
+- **Templated pages** generate many pages from a single markdown template
+- **Loops** and **If / Else** statements allow control of what is displayed to users
+- **Coded for Performance**: LunivCore is made with **C**, enabling high-performance.
 
 ## LunivCore Features
 * **High Performance:** Core data structure handling and rendering implemented in C.
@@ -94,3 +113,8 @@ sudo pacman -S base-devel lua
 
 ```
 
+
+
+# License
+
+LunivCore is licensed under the MIT license. See the [LICENSE](LICENSE.md) file for licensing information.
