@@ -1,11 +1,16 @@
-# LunivCore: C/Lua Business Intelligence Engine from [Luniv Consulting](https://luniv.tech/)
+<div id="top" align="center">
+    
+![](assets/lunivcore-logo.png)
 
-Get started by reading the [docs.](https://lunivcore.vercel.app/)
+##### Business Intelligence as Code: Generate reports using `lcore`, a SQL and markdown inspired language.
+##### Or use with [Lua](https://www.lua.org/)
+##### Get started by reading the [docs.](https://lunivcore.vercel.app/)
 
-> [!WARNING]
-> Work in Progress. Not ready for production use.
+</div>
 
 # See It In Action
+
+LunivCore is an open-source, engineer focused alternative to PowerBI, Tableau, and other business intelligence tool.
 
 Instantly start answering the most important questions for your business.
 
@@ -35,6 +40,15 @@ East       | █████████████████████ (21
 West       | █████████████████████████████████████████████ (450)
 ----------------
 ```
+
+LunivCore generates a terminal-dashboard or website from markdown-inspired `.lcore` or `Lua` files:
+
+- **Low-level** framework engineered for integration anywhere that supports C, including microcontrollers, websites, servers, and more.
+- **SQL-like statements** inside markdown-inspired files to run queries against your data sources
+- **Charts and components** are rendered using these query results
+- **Templated pages** generate many pages from a single markdown template
+- **Loops** and **If / Else** statements allow control of what is displayed to users
+- **Coded for Performance**: LunivCore is made with **C**, enabling high-performance.
 
 ## LunivCore
 The goal of `LunivCore` is to enable **"BI-as-Code"**, allowing analysts to define complex reports without requiring re-compilation of the core engine.
@@ -94,3 +108,8 @@ sudo pacman -S base-devel lua
 
 ```
 
+
+
+# License
+
+LunivCore is licensed under the MIT license. See the [LICENSE](LICENSE.md) file for licensing information.
