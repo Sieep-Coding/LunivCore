@@ -1,0 +1,331 @@
+---
+title: Getting Started with LunivCore
+description: Get up and running with LunivCore in under 10 minutes. Build your first analytics report.
+---
+
+import { Steps, Tabs, TabItem, Aside, Card, CardGrid } from '@astrojs/starlight/components';
+
+LunivCore is built for developers. If you're familiar with Git, command-line tools, and code, you'll be comfortable here. In 10 minutes, you'll write and execute your first BI report.
+
+## System Requirements
+
+    - OS: Linux, macOS, or Windows (WSL2)
+    - Build tools: gcc or clang, make
+    - RAM: 512MB minimum
+    - Disk: 50MB for build + dependencies
+
+## Installation
+<Steps>
+<ol>
+Clone the repository
+
+```bash
+   git clone https://github.com/sieep-coding/lunivcore.git
+   cd lunivcore
+```
+Build the project
+```bash
+
+   make clean && make
+```
+This compiles the C core and links the Lua runtime. Output: ./lcore executable (~2MB).
+
+Verify installation
+
+```bash
+
+   ./lcore examples/helloworld.lcore
+```
+
+(Optional) Add to PATH
+```bash
+   sudo cp lcore /usr/local/bin/
+```
+</ol>
+</Steps> 
+
+<Aside type="tip"> 
+**On Windows?** Use Windows Subsystem for Linux (WSL2). Install from Microsoft Store, then follow Linux instructions above. 
+</Aside>
+
+## Your First Report (5 Minutes)
+
+Create a file named sales_report.lcore:
+```bash
+
+# Sales Report - Q1 2025
+
+dataset Sales "Quarterly Sales by Region" {
+    North: 450000
+    South: 320000
+    East: 580000
+    West: 410000
+}
+
+plot Sales as bar
+```
+
+Run it:
+```bash
+./lcore sales_report.lcore
+```
+You'll see:
+```text
+
+# Sales Report - Q1 2025
+
+--- Quarterly Sales by Region ---
+North      | ████████████████████████ (450000)
+South      | █████████████████ (320000)
+East       | ██████████████████████████ (580000)
+West       | ███████████████████████ (410000)
+----------------
+```
+Congratulations! You've written your first LunivCore analytics report.
+
+Understanding the Syntax
+
+<Tabs starlight> 
+<TabItem label="Basics"> 
+
+```bash 
+
+# This is a comment/header
+
+# Define a dataset (collection of labeled values)
+dataset MyData "Human Readable Title" {
+    Label1: 100
+    Label2: 200
+    Label3: 150
+}
+
+# Visualize it
+plot MyData as bar
+```
+
+**Key concepts:**
+- `#` starts a header comment
+- `dataset NAME "TITLE" { ... }` defines data
+- `plot NAME as TYPE` renders the visualization
+</TabItem>
+  
+<TabItem label="Views (Derived Data)">
+Use **views** to create calculated/derived datasets:
+
+```bash
+    dataset Sales "Revenue" {
+        ProductA: 100000
+        ProductB: 80000
+        ProductC: 120000
+    }
+
+    # View: Calculate percentages
+    view MarketShare "Revenue Distribution" {
+        ProductA: 42
+        ProductB: 33
+        ProductC: 50
+    }
+
+    plot Sales as bar
+    plot MarketShare as bar
+```
+Views are identical to datasets syntactically but conceptually represent derived/calculated data.
+
+</TabItem> 
+
+<TabItem label="Complete Example"> 
+
+```bash # Financial Dashboard # Generated: 2025-Q1 # Status: For Review
+
+# Input: Raw Data
+dataset Revenue "Quarterly Revenue" {
+    Q1: 2850000
+    Q2: 3120000
+    Q3: 2950000
+    Q4: 4200000
+}
+
+plot Revenue as bar
+
+# Derived: Year-over-Year Growth
+view YoY "YoY Growth %" {
+    Q1: 12
+    Q2: 18
+    Q3: 8
+    Q4: 22
+}
+
+plot YoY as bar
+
+# Derived: Profit Margins
+view Margins "Net Margin %" {
+    Q1: 32
+    Q2: 35
+    Q3: 30
+    Q4: 38
+}
+
+plot Margins as bar
+```
+  </TabItem>
+</Tabs>
+
+## Version Control Your Analytics
+
+LunivCore is built for Git. Treat your analytics like source code:
+```bash
+# Initialize a report repository
+git init my-analytics
+cd my-analytics
+```
+# Create your first report
+```bash
+cat > sales_report.lcore << 'EOF'
+```
+```bash
+dataset Sales "Monthly Sales" {
+    Jan: 100000
+    Feb: 120000
+    Mar: 115000
+}
+plot Sales as bar
+EOF
+```
+# Commit it
+```bash
+git add sales_report.lcore
+git commit -m "Initial sales report"
+```
+# Later: Update your data
+# Edit the file...
+```bash
+git diff sales_report.lcore  # See exactly what changed
+```
+# Deploy with confidence
+```bash
+git push origin main
+```
+# Integrating with Lua
+
+For programmatic analytics, embed LunivCore in Lua:
+
+Create `analysis.lua`:
+```lua
+
+-- Financial Analysis Engine
+
+-- Create a dataset
+local portfolio = BI.new("Portfolio Performance")
+
+-- Add data
+portfolio:add("Tech", 450000)
+portfolio:add("Finance", 320000)
+portfolio:add("Healthcare", 280000)
+portfolio:add("Energy", 180000)
+
+-- Visualize
+portfolio:plot()
+
+-- Add derived metrics
+local total = 450000 + 320000 + 280000 + 180000
+local percentages = BI.new("Allocation %")
+
+percentages:add("Tech", math.floor((450000 / total) * 100))
+percentages:add("Finance", math.floor((320000 / total) * 100))
+percentages:add("Healthcare", math.floor((280000 / total) * 100))
+percentages:add("Energy", math.floor((180000 / total) * 100))
+
+percentages:plot()
+```
+Run it:
+```bash
+./lcore analysis.lua
+```
+<Aside type="tip"> 
+Key difference: .lcore files are declarative (what you want). .lua files are procedural (how to compute it).
+</Aside>
+
+# Common Patterns
+<CardGrid> 
+<Card title="Basic Dashboard"> 
+```bash 
+dataset Metrics "Q1 KPIs" { 
+    Revenue: 2850000 
+    Customers: 12400 
+    Churn: 2 
+    NPS: 72 
+}
+plot Metrics as bar
+```
+</Card>
+<Card title="Multi-View Analysis">
+```bash
+dataset Sales "Sales by Region" {
+    APAC: 2850000
+    EMEA: 1920000
+    Americas: 3450000
+}
+view Targets "Target Attainment %" {
+    APAC: 95
+    EMEA: 88
+    Americas: 102
+}
+plot Sales as bar
+plot Targets as bar
+```
+</Card> 
+<Card title="Report with Headers"> 
+```bash 
+# Monthly Performance Report 
+# Generated: 2025-01-15 
+# Prepared by: Analytics Team
+dataset Metrics "KPI" {
+    Revenue: 2850000
+    Margin: 35
+}
+# Analysis
+plot Metrics as bar
+```
+</Card>
+
+<Card title="Conditional Logic (Lua)">
+```lua
+local results = BI.new("Status Report")
+local revenue = 2850000
+local target = 2500000
+
+if revenue > target then
+    results:add("Status", "On Track")
+    results:add("Achievement %", 114)
+else
+    results:add("Status", "Below Target")
+end
+
+results:plot()
+```
+</Card> 
+</CardGrid>
+
+## Next Steps
+<CardGrid> 
+<Card title="Learn LCore Syntax"> 
+Dive deeper into the `.lcore` language: 
+
+- [LCore Language Guide](/docs/language) 
+
+- [Complete Syntax Reference](/docs/reference) 
+</Card> 
+
+<Card title="Master Lua Integration"> 
+Build complex analytics logic: 
+
+- [Lua Integration Guide](/docs/lua-integration) 
+
+- [API Reference](/docs/api) 
+</Card> 
+<Card title="Deploy to Production"> 
+Run LunivCore in production environments: 
+- [Deployment Guide](/docs/deployment) 
+- [Docker & Kubernetes](/docs/deployment/docker) 
+</Card> 
+</CardGrid>

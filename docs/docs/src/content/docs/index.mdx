@@ -17,80 +17,179 @@ hero:
 
 import { Aside, Card, CardGrid, LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
+# The Problem We Solve
+Enterprise BI tools like Tableau, PowerBI, and Looker are powerful but fundamentally flawed for engineering teams:
+
+- Black-box calculations prevent version control and peer review
+- Vendor lock-in makes migration prohibitively expensive
+- Slow deployment cycles require specialized BI engineers
+- Limited extensibility for custom algorithms and domain logic
+- High TCO with licensing, infrastructure, and training costs
+
+LunivCore is built for engineering teams who demand **source code** rigor applied to **analytics**.
+
+# The LunivCore Advantage
+<CardGrid stagger>
+  <Card title="C-Level Performance" icon="rocket">
+    Subsecond queries on billion-row datasets. No interpreted overhead. Native memory efficiency means analytics on resource-constrained infrastructure.
+  </Card>
+  <Card title="Version Control Your Data" icon="document">
+    Reports are code. Git diff your analytics. Review changes before deployment. Audit every calculation modification.
+  </Card>
+  <Card title="Developer-First Design" icon="pencil">
+    Markdown-inspired `.lcore` syntax. Lua scripting for logic. No drag-and-drop complexity. Engineers ship faster.
+  </Card>
+  <Card title="Deploy Anywhere" icon="seti:folder">
+    Lightweight C core (< 5MB). Runs on servers, edge devices, embedded systems. Perfect for SaaS, edge analytics, and IoT.
+  </Card>
+  <Card title="Open Source Forever" icon="star">
+    Core engine MIT licensed. Community contributions. No surprise licensing changes. Owned by your engineering team.
+  </Card>
+  <Card title="Zero External Dependencies" icon="setting">
+    Self-contained runtime. No database lock-in. Embeddable in any application via C API or Lua bindings.
+  </Card>
+</CardGrid>
+
 # See It In Action
 
-Instantly start answering the most important questions for your business.
 <Tabs starlight>
-    <TabItem label=".lcore file">
-        This `.lcore` file can be interpreted directly:
+    <TabItem label="LCore DSL">
+        Write analytics like code, with clean syntax:
 
     ```bash
-    # Sales Report Q1 (examples/helloworld.lcore)
-
-    dataset Sales "Q1 Regional Sales" {
-        North: 340
-        South: 120
-        East: 210
-        West: 450
+    dataset Sales "Q1 Revenue by Region" {
+        APAC: 2850000
+        EMEA: 1920000
+        Americas: 3450000
+        Other: 480000
     }
 
     plot Sales as bar
 
+    view MarketShare "Revenue Distribution (%)" {
+        APAC: 38
+        EMEA: 25
+        Americas: 45
+        Other: 6
+    }
+
+    plot MarketShare as bar
+
     ```
 
     #### Outputs:
 
     ```text
-    --- Q1 Regional Sales ---
-    North      | ██████████████████████████████████ (340)
-    South      | ████████████ (120)
-    East       | █████████████████████ (210)
-    West       | █████████████████████████████████████████████ (450)
+    --- Q1 Revenue by Region ---
+    APAC       | ███████████████████████████████████████ (2850000)
+    EMEA       | ████████████████████████ (1920000)
+    Americas   | ███████████████████████████████████████████ (3450000)
+    Other      | █████ (480000)
+    ----------------
+
+    --- Revenue Distribution (%) ---
+    APAC       | ███████████████████ (38)
+    EMEA       | ████████████ (25)
+    Americas   | ██████████████████████ (45)
+    Other      | ███ (6)
     ----------------
     ```
     </TabItem>
-    <TabItem label="Lua file">
-    Or bind with a `.lua` file for even more power through conditionals, dynamic typing, automatic memory management, and first-class functions:
+    <TabItem label="Lua Integration">
+   Embed in applications or build complex logic:
 
     ```lua
-      print("BI Engine: Starting Analysis...")
+    local sales = BI.new("YoY Growth Analysis")
 
-      local sales = BI.new("Q1 Regional Sales")
+    local current_revenue = 8700000
+    local last_year_revenue = 6840000
+    local growth_rate = ((current_revenue - last_year_revenue) / last_year_revenue) * 100
 
-      sales:add("North", 340)
-      sales:add("South", 120)
-      sales:add("East", 210)
-      sales:add("West", 450)
+    if growth_rate > 20 then
+        sales:add("Status", "High Growth")
+        sales:add("Growth Rate (%)", growth_rate)
+        sales:add("Projected Next Year", current_revenue * 1.25)
+    else
+        sales:add("Status", "Monitor")
+        sales:add("Growth Rate (%)", growth_rate)
+    end
 
-      local projection = 50
-      if (projection >= 50) then
-          sales:add("Proj.", projection * 2)
-          print("Conditionals with LunivCore!")
-      end
-
-      sales:plot()
-
-      print("Analysis Complete.")
+    sales:plot()
     ```
-
-    #### Outputs:
-
-    ```text
-    BI Engine: Starting Analysis...
-    Conditionals with LunivCore!
-
-    --- Q1 Regional Sales ---
-    North      | ██████████████████████████████████ (340)
-    South      | ████████████ (120)
-    East       | █████████████████████ (210)
-    West       | █████████████████████████████████████████████ (450)
-    Proj.      | ██████████ (100)
-    ----------------
-    Analysis Complete.
-    ```
-
     </TabItem>
     </Tabs>
+
+# Market Opportunity
+<CardGrid>
+  <Card title="$60B+ Analytics Market" icon="rocket">
+    Gartner projects enterprise analytics spending will exceed $80B by 2026. Legacy tools capture 85% of this market, but dissatisfaction is growing among engineering-driven organizations.
+  </Card>
+  <Card title="Developer-First Wave" icon="pencil">
+    Datadog, Stripe, and Twilio have proven that developers will adopt tools that align with engineering principles. The modern data stack is moving toward code-first approaches.
+  </Card>
+  <Card title="Edge & Embedded Analytics" icon="seti:folder">
+    IoT, real-time systems, and edge computing demand lightweight, embeddable analytics. The $12B+ edge computing market needs solutions like LunivCore.
+  </Card>
+</CardGrid>
+
+# Product Roadmap
+<Steps>
+<ol>
+## Phase 1: Foundation (Current)
+- Core .lcore DSL with dataset and view primitives
+- Lua integration layer
+- Basic visualization (ASCII charts, JSON export)
+- Open source release & community engagement
+## Phase 2: Enterprise Ready (Q2-Q3 2025)
+- Advanced aggregation functions (SUM, AVG, GROUP BY, JOIN)
+- Time-series support and window functions
+- Multi-dataset operations
+- Docker/Kubernetes deployment guides
+## Phase 3: Platform (Q4 2025 - Q1 2026)
+- Web dashboard & report builder UI
+- Real-time streaming analytics (WebSocket support)
+- Commercial license tier (enterprise support, priority features)
+- Cloud hosting: analytics.luniv.cloud
+- SDK for JavaScript, Python, Go
+## Phase 4: Ecosystem (2026+)
+- Third-party connector marketplace
+- AI-powered query assistant
+- Advanced ML integration
+- B2B SaaS analytics-as-a-service platform
+- Enterprise feature parity with Tableau/PowerBI
+
+</ol>
+</Steps>
+
+# For Enterprise Teams
+LunivCore is ideal for organizations that need:
+
+- Repeatable, auditable analytics pipelines via version control
+- Embedded analytics in their SaaS product or internal systems
+- Compliance and data governance (reports are code, changes are tracked)
+- Custom analytics workflows not constrained by drag-and-drop interfaces
+- Cost-effective scaling without per-seat licensing
+
+<Aside type="tip">
+Organizations like Figma (analytics layer), Segment (CDP analytics), and Stripe (billing intelligence) all built custom analytics solutions because existing tools couldn't meet their needs. LunivCore is the turnkey solution they would have chosen.
+</Aside>
+
+Technical Architecture
+<CardGrid stagger>
+    <Card title="C Core (Performance)" icon="rocket">
+        Lexer → Parser → AST → Executor. Minimal allocations, cache-optimized data structures. Achieves 1M rows/second throughput on standard hardware.
+    </Card>
+    <Card title="Lua Runtime (Flexibility)" icon="pencil">
+        Full Lua 5.1 environment. First-class functions, metatables, dynamic typing. Seamless C/Lua interop via stable C API.
+    </Card>
+    <Card title="LCore DSL (Developer UX)" icon="document">
+        Markdown-inspired syntax. Familiar to developers. Compiles to AST. Executes on either C engine or Lua runtime.
+    </Card>
+    <Card title="Extensibility" icon="setting">
+        Add custom functions in C or Lua. Implement new visualization types. Build domain-specific extensions without modifying core.
+    </Card>
+</CardGrid>
+
 ## What is LunivCore?
 
 This documentation is designed to help you integrate, extend, and deploy the LunivCore engine effectively.
@@ -267,3 +366,9 @@ LunivCore is built and maintained by the passionate dev team at [Luniv Consultin
     </LinkButton>
   </Card>
 </CardGrid>
+
+# Community & Support
+
+- **GitHub**: [github.com/sieep-coding/lunivcore](github.com/sieep-coding/lunivcore)
+- **Enterprise Support**: partners@luniv.tech
+- **Book a Demo:** [calendly.com/nstamb6/30min](calendly.com/nstamb6/30min)

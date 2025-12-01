@@ -1,9 +1,11 @@
-#ifndef RENDER_H
-#define RENDER_H
+    #ifndef RENDER_H
+    #define RENDER_H
 
-#include "ast.h"
+    #include "ast.h"
 
-/* Render the AST to terminal */
-void render_dataset(ASTNode *node);
+    /* Render the AST to terminal */
+    void render_dataset(ASTNode *node);
 
-#endif
+    void render_view(ASTNode *node);
+
+    #endif

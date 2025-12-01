@@ -1,0 +1,30 @@
+# Quarterly Financial Review
+
+# Data Input Raw Sales Figures
+
+dataset Products "Global Product Sales (M)" {
+    Software: 850
+    Services: 420
+    Hardware: 190
+}
+plot Products as bar
+
+# Derived Data Calculated Percentages
+
+# Note: View is used for derived data
+
+view MarketShare "Market Share by Segment (%)" {
+    SegmentA: 55
+    SegmentB: 30
+    SegmentC: 15
+}
+plot MarketShare as bar
+
+# Operational Metrics
+
+dataset Ops "Operational Spend (K)" {
+    RandD: 600
+    Marketing: 450
+    Admin: 200
+}
+plot Ops as bar

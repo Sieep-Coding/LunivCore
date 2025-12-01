@@ -1,0 +1,5 @@
+filter HighValue from Sales where amount > 50000
+group_by ByRegion from Sales by region aggregate sum(amount)
+sort TopPerformers from Sales by revenue desc
+export Sales to json "output.json"
+plot Sales as bar

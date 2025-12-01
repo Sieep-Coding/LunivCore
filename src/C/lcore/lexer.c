@@ -11,6 +11,10 @@ static int match_as(const char *str, size_t len) {
     return len == 2 && str[0] == 'a' && str[1] == 's';
 }
 
+static int match_view(const char *str, size_t len) {
+    return len == 4 && strcmp(str, "view") == 0;
+}
+
 void lexer_init(Lexer *lexer, const char *source) {
     lexer->source = source;
     lexer->pos = 0;
@@ -102,9 +106,16 @@ Token lexer_next(Lexer *lexer) {
         char *buf = malloc(len + 1);
         strncpy(buf, src + start, len);
         buf[len] = '\0';
+        
+        /* Check for keywords */
         if (match_as(buf, len)) {
             token.type = TOKEN_AS;
             free(buf);
+            token.lexeme = NULL;
+        } else if (match_view(buf, len)) {
+            token.type = TOKEN_VIEW;
+            free(buf);
+            token.lexeme = NULL;
         } else {
             token.type = TOKEN_IDENTIFIER;
             token.lexeme = buf;

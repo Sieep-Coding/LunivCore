@@ -1,6 +1,14 @@
 #include "dataset.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
+/* Global instance definition */
+DataSetRegistry BI_Registry = { .count = 0 };
+
+/* --------------------------------- */
+/* Dataset Core Implementation       */
+/* --------------------------------- */
 
 void dataset_init(DataSet *ds, const char *title) {
     if (!ds) return;
@@ -44,4 +52,51 @@ void dataset_plot(const DataSet *ds) {
     }
 
     printf("----------------\n");
+}
+
+
+/* --------------------------------- */
+/* Registry Implementation           */
+/* --------------------------------- */
+
+int dataset_registry_add(const char *name, DataSet *ds) {
+    if (BI_Registry.count >= DATASET_MAX_DATASETS) {
+        fprintf(stderr, "Registry error: Max dataset limit reached.\n");
+        return -1;
+    }
+
+    // Check if name already exists
+    for (size_t i = 0; i < BI_Registry.count; i++) {
+        if (strcmp(BI_Registry.names[i], name) == 0) {
+            fprintf(stderr, "Registry error: Dataset '%s' already exists.\n", name);
+            return -1;
+        }
+    }
+
+    strncpy(BI_Registry.names[BI_Registry.count], name, DATASET_MAX_NAME - 1);
+    BI_Registry.names[BI_Registry.count][DATASET_MAX_NAME - 1] = '\0';
+    
+    BI_Registry.datasets[BI_Registry.count] = ds;
+    BI_Registry.count++;
+
+    return 0;
+}
+
+DataSet *dataset_registry_get(const char *name) {
+    for (size_t i = 0; i < BI_Registry.count; i++) {
+        if (strcmp(BI_Registry.names[i], name) == 0) {
+            return BI_Registry.datasets[i];
+        }
+    }
+    return NULL;
+}
+
+void dataset_registry_free() {
+    for (size_t i = 0; i < BI_Registry.count; i++) {
+        // Free the DataSet object that was dynamically allocated in main.c
+        free(BI_Registry.datasets[i]);
+        BI_Registry.datasets[i] = NULL;
+    }
+    BI_Registry.count = 0;
+    fprintf(stderr, "BI_Registry: Cleaned up and freed all datasets.\n");
 }
