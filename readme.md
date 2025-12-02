@@ -9,14 +9,19 @@
 
 </div>
 
-## Why Now?
-The goal of `LunivCore` is to enable **"BI-as-Code"**, allowing analysts to define complex reports without requiring re-compilation of the core engine.
+# LunivCore — Business Intelligence as Code
+A lightweight, expressive BI language built for engineers who want full control over their analytics stack. 
 
+LunivCore combines a Markdown-inspired syntax with a compact C/Lua execution core to deliver high performance, extensibility, and transparent data operations.
+
+This monorepo includes the interpreter, documentation, and supporting tools for building end-to-end BI workflows programmatically.
+
+## Why Now?
 > I built `LunivCore` after getting tired of the constraints of traditional enterprise BI platforms. Instead of relying on a Markdown-driven system like [evidence](https://github.com/evidence-dev/evidence/), I wanted a lower-level foundation. Something lean, predictable, and fully under my control. Using C and Lua gives me that flexibility.
 >
 > This gives me the freedom to layer features on top such as Markdown rendering, web output, and anything else in deliberate manner.
 >
->  Nick, LunivCore creator
+>  -Nick
 
 # See It In Action
 
