@@ -12,7 +12,7 @@ LCORE_DIR = $(SRC_DIR)/lcore
 LUA_SCRIPT = src/lua/config.lua
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -I$(SRC_DIR) -I$(LUA_BIND_DIR) -I$(CORE_DIR)
+CFLAGS = -Wall -Wextra -I$(SRC_DIR) -I$(LUA_BIND_DIR) -I$(CORE_DIR) -Isrc/C/data_processing
 LDFLAGS = -llua -lm
 
 # Source files (dataset.c must appear before lbind.c)
@@ -23,6 +23,7 @@ SOURCES = $(SRC_DIR)/main.c \
           $(SRC_DIR)/lcore/lexer.c \
           $(SRC_DIR)/lcore/parser.c \
           $(SRC_DIR)/lcore/render.c \
+          src/C/data_processing/dp_dataset.o \
           $(LUA_BIND_DIR)/lbind.c
 
 # Object files
