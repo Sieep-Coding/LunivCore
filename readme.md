@@ -3,7 +3,7 @@
 ![](assets/lunivcore-logo.png)
 
 ##### Business Intelligence as Code: Generate reports using `lcore`, a SQL and markdown inspired language.
-##### | [EXAMPLES](https://github.com/Sieep-Coding/LunivCore/tree/main/examples) | [WEBSITE](https://lunivcore.vercel.app/) |
+#### [EXAMPLES](https://github.com/Sieep-Coding/LunivCore/tree/main/examples) | [WEBSITE](https://lunivcore.vercel.app/) |
 ##### Or use with [Lua](https://www.lua.org/)
 ##### Get started by reading the [docs.](https://lunivcore.vercel.app/)
 
