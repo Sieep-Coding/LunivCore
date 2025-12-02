@@ -28,6 +28,7 @@ This `.lcore` file:
 
 ```bash
 # Sales Report Q1 (examples/helloworld.lcore)
+text "Regional sales are strong this year in the West."
 
 dataset Sales "Q1 Regional Sales" {
     North: 340
@@ -38,17 +39,38 @@ dataset Sales "Q1 Regional Sales" {
 
 plot Sales as bar
 
+view MarketShare "Market Share by Segment (%)" {
+    SegmentA: 90
+    SegmentB: 8
+    SegmentC: 2
+    text "Analysis Notes: North dominates the market."
+    text "Segments B and C are negligible."
+}
+plot MarketShare as bar
+
 ```
 
 #### Outputs:
 
 ```text
+╔════════════════════════════════════════════════╗
+║Regional sales are strong this year in the West.║
+╚════════════════════════════════════════════════╝
 --- Q1 Regional Sales ---
 North      | ██████████████████████████████████ (340)
 South      | ████████████ (120)
 East       | █████████████████████ (210)
 West       | █████████████████████████████████████████████ (450)
 ----------------
+╔════════════════════════════════════════════════╗
+║          Market Share by Segment (%)           ║
+╠════════════════════════════════════════════════╣
+║ SegmentA : 90 │█████████████████████████████ │ ║
+║ SegmentB :  8 │███░░░░░░░░░░░░░░░░░░░░░░░░░░ │ ║
+║ SegmentC :  2 │█░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │ ║
+║  Analysis Notes: North dominates the market.   ║
+║        Segments B and C are negligible.        ║
+╚════════════════════════════════════════════════╝
 ```
 
 Or run it on the Lua VM through C functions:
