@@ -3,8 +3,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <string.h>
 
 /* Project headers */
+#include "core/dataset.h"
 #include "lcore/lexer.h"
 #include "lcore/parser.h"
 #include "lcore/ast.h"
@@ -55,6 +57,24 @@ void lcore_exec_file(const char *path) {
             render_dataset(child);
         else if (child->type == NODE_VIEW)
             render_view(child);
+        else if (child->type == NODE_FUNCTION_CALL) {
+            DataSet *ds = dataset_registry_get(child->value);
+            if (!ds) {
+                fprintf(stderr, "Unknown dataset: %s\n", child->value);
+                continue;
+            }
+
+            if (strcmp(child->name, "sum") == 0)
+                printf("Sum(%s) = %ld\n", child->value, dataset_sum(ds));
+            else if (strcmp(child->name, "avg") == 0)
+                printf("Avg(%s) = %.2f\n", child->value, dataset_avg(ds));
+            else if (strcmp(child->name, "min") == 0)
+                printf("Min(%s) = %d\n", child->value, dataset_min(ds));
+            else if (strcmp(child->name, "max") == 0)
+                printf("Max(%s) = %d\n", child->value, dataset_max(ds));
+            else if (strcmp(child->name, "count") == 0)
+                printf("Count(%s) = %zu\n", child->value, dataset_count(ds));
+        }
     }
 
     ast_free(root);

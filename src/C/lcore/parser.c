@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "core/dataset.h" 
 
 // Forward declarations
 static ASTNode *parse_header(Parser *parser);
@@ -51,7 +52,7 @@ static ASTNode *parse_dataset(Parser *parser) {
     parser_expect(parser, TOKEN_IDENTIFIER); // "dataset"
     parser_advance(parser);
 
-    parser_expect(parser, TOKEN_IDENTIFIER); // name
+    parser_expect(parser, TOKEN_IDENTIFIER); // dataset name
     char *name = strdup(parser->current_token.lexeme);
     parser_advance(parser);
 
@@ -64,6 +65,7 @@ static ASTNode *parse_dataset(Parser *parser) {
 
     ASTNode *dataset_node = ast_new(NODE_DATASET, name, title, 0);
 
+    // Parse rows
     while (parser->current_token.type != TOKEN_RBRACE &&
            parser->current_token.type != TOKEN_EOF) {
         ASTNode *row = parse_row(parser);
@@ -72,6 +74,17 @@ static ASTNode *parse_dataset(Parser *parser) {
 
     parser_expect(parser, TOKEN_RBRACE);
     parser_advance(parser);
+
+    // --- REGISTER DATASET ---
+    DataSet *ds = malloc(sizeof(DataSet));
+    dataset_init(ds, title);
+    for (size_t i = 0; i < dataset_node->child_count; i++) {
+        ASTNode *row = dataset_node->children[i];
+        dataset_add(ds, row->name, row->numeric_value);
+    }
+    if (dataset_registry_add(name, ds) != 0) {
+        fprintf(stderr, "Failed to register dataset '%s'\n", name);
+    }
 
     return dataset_node;
 }
@@ -144,6 +157,8 @@ void parser_init(Parser *parser, Lexer *lexer) {
     parser->current_token = lexer_next(lexer);
 }
 
+static ASTNode *parse_function_call(Parser *parser);
+
 ASTNode *parser_parse(Parser *parser) {
     ASTNode *root = ast_new(NODE_DOCUMENT, NULL, NULL, 0);
 
@@ -173,7 +188,16 @@ ASTNode *parser_parse(Parser *parser) {
                  strcmp(parser->current_token.lexeme, "export") == 0) {
             ASTNode *export_node = parse_export(parser);
             ast_add_child(root, export_node);
-        } 
+        }
+        else if (parser->current_token.type == TOKEN_SUM ||
+         parser->current_token.type == TOKEN_AVG ||
+         parser->current_token.type == TOKEN_MIN ||
+         parser->current_token.type == TOKEN_MAX ||
+         parser->current_token.type == TOKEN_COUNT) {
+            ASTNode *func_call = parse_function_call(parser);
+            ast_add_child(root, func_call);
+        }
+
         else {
             fprintf(stderr, "Unknown statement at line %d, column %d (token type: %d)\n",
                     parser->current_token.line, parser->current_token.column,
@@ -183,4 +207,34 @@ ASTNode *parser_parse(Parser *parser) {
     }
 
     return root;
+}
+
+static ASTNode *parse_function_call(Parser *parser) {
+    // Current token is one of TOKEN_SUM, TOKEN_AVG, TOKEN_MIN, TOKEN_MAX, TOKEN_COUNT
+    TokenType func_type = parser->current_token.type;
+    const char *func_name = NULL;
+
+    switch (func_type) {
+        case TOKEN_SUM:   func_name = "sum"; break;
+        case TOKEN_AVG:   func_name = "avg"; break;
+        case TOKEN_MIN:   func_name = "min"; break;
+        case TOKEN_MAX:   func_name = "max"; break;
+        case TOKEN_COUNT: func_name = "count"; break;
+        default:
+            fprintf(stderr, "Unknown aggregation function at line %d, column %d\n",
+                    parser->current_token.line, parser->current_token.column);
+            exit(1);
+    }
+
+    parser_advance(parser);
+
+    parser_expect(parser, TOKEN_IDENTIFIER); // dataset name
+    char *dataset_name = strdup(parser->current_token.lexeme);
+    parser_advance(parser);
+
+    return ast_new(NODE_FUNCTION_CALL, func_name, dataset_name, 0);
+}
+
+ASTNode *ast_new_function_call(const char *func_name, const char *dataset_name) {
+    return ast_new(NODE_FUNCTION_CALL, func_name, dataset_name, 0);
 }

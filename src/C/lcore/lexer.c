@@ -3,6 +3,13 @@
 #include <string.h>
 #include <ctype.h>
 
+static int match_sum(const char *str, size_t len)   { return len == 3 && strcmp(str, "sum") == 0; }
+static int match_avg(const char *str, size_t len)   { return len == 3 && strcmp(str, "avg") == 0; }
+static int match_min(const char *str, size_t len)   { return len == 3 && strcmp(str, "min") == 0; }
+static int match_max(const char *str, size_t len)   { return len == 3 && strcmp(str, "max") == 0; }
+static int match_count(const char *str, size_t len) { return len == 5 && strcmp(str, "count") == 0; }
+
+
 static int is_identifier_char(char c) {
     return isalnum(c) || c == '_';
 }
@@ -106,22 +113,28 @@ Token lexer_next(Lexer *lexer) {
         char *buf = malloc(len + 1);
         strncpy(buf, src + start, len);
         buf[len] = '\0';
-        
+
         /* Check for keywords */
         if (match_as(buf, len)) {
-            token.type = TOKEN_AS;
-            free(buf);
-            token.lexeme = NULL;
+            token.type = TOKEN_AS; free(buf); token.lexeme = NULL;
         } else if (match_view(buf, len)) {
-            token.type = TOKEN_VIEW;
-            free(buf);
-            token.lexeme = NULL;
+            token.type = TOKEN_VIEW; free(buf); token.lexeme = NULL;
+        } else if (match_sum(buf, len)) {
+            token.type = TOKEN_SUM; free(buf); token.lexeme = NULL;
+        } else if (match_avg(buf, len)) {
+            token.type = TOKEN_AVG; free(buf); token.lexeme = NULL;
+        } else if (match_min(buf, len)) {
+            token.type = TOKEN_MIN; free(buf); token.lexeme = NULL;
+        } else if (match_max(buf, len)) {
+            token.type = TOKEN_MAX; free(buf); token.lexeme = NULL;
+        } else if (match_count(buf, len)) {
+            token.type = TOKEN_COUNT; free(buf); token.lexeme = NULL;
         } else {
-            token.type = TOKEN_IDENTIFIER;
-            token.lexeme = buf;
+            token.type = TOKEN_IDENTIFIER; token.lexeme = buf;
         }
         return token;
     }
+
 
     advance(lexer);
     token.type = TOKEN_UNKNOWN;
