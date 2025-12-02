@@ -50,6 +50,39 @@ West       | ██████████████████████�
 ----------------
 ```
 
+Or run it on the Lua VM through C functions:
+
+```lua
+local dataset = BI.new("Q1 Aggregation KPIs")
+
+dataset:add("North", 340)
+dataset:add("South", 210)
+
+print("Total:", dataset:sum())
+print("Average:", dataset:avg())
+print("Min:", dataset:min())   
+print("Max:", dataset:max())
+print("Count:", dataset:count())
+
+print("Max - Min:", dataset:max() - dataset:min())
+
+dataset:plot()
+```
+
+```text
+./lcore examples/lua/aggregation.lua
+Total: 550
+Average: 275.0
+Min: 210
+Max: 340
+Count: 2
+Max - Min: 130
+
+--- Q1 Aggregation KPIs ---
+North      | ██████████████████████████████████ (340)
+South      | █████████████████████ (210)
+```
+
 LunivCore generates a terminal-dashboard or website from markdown-inspired `.lcore` or `Lua` files:
 
 - **Low-level** framework engineered for integration anywhere that supports C, including microcontrollers, websites, servers, and more.
