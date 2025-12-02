@@ -22,6 +22,11 @@ static int match_view(const char *str, size_t len) {
     return len == 4 && strcmp(str, "view") == 0;
 }
 
+static int match_text(const char *str, size_t len) {
+    return len == 4 && strcmp(str, "text") == 0;
+}
+
+
 void lexer_init(Lexer *lexer, const char *source) {
     lexer->source = source;
     lexer->pos = 0;
@@ -129,6 +134,8 @@ Token lexer_next(Lexer *lexer) {
             token.type = TOKEN_MAX; free(buf); token.lexeme = NULL;
         } else if (match_count(buf, len)) {
             token.type = TOKEN_COUNT; free(buf); token.lexeme = NULL;
+        } else if (match_text(buf, len)) {
+            token.type = TOKEN_TEXT; free(buf); token.lexeme = NULL;
         } else {
             token.type = TOKEN_IDENTIFIER; token.lexeme = buf;
         }

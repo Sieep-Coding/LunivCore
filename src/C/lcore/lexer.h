@@ -69,7 +69,6 @@ typedef enum {
     TOKEN_COUNT,            /* 'count' */
     TOKEN_STDDEV,           /* 'stddev' */
     TOKEN_MEDIAN,           /* 'median' */
-    
     /* Data types */
     TOKEN_INT_TYPE,         /* 'int' */
     TOKEN_FLOAT_TYPE,       /* 'float' or 'double' */
@@ -77,6 +76,7 @@ typedef enum {
     TOKEN_DATE_TYPE,        /* 'date' */
     TOKEN_BOOL_TYPE,        /* 'bool' or 'boolean' */
     
+    TOKEN_TEXT,
     /* Visualization types */
     TOKEN_BAR,              /* 'bar' */
     TOKEN_LINE,             /* 'line' */

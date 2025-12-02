@@ -7,5 +7,5 @@
 void render_dataset(ASTNode *node);
 
 void render_view(ASTNode *node);
-
+void render_text(ASTNode *node);
 #endif

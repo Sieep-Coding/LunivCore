@@ -57,6 +57,8 @@ void lcore_exec_file(const char *path) {
             render_dataset(child);
         else if (child->type == NODE_VIEW)
             render_view(child);
+        else if (child->type == NODE_TEXT)
+            render_text(child);
         else if (child->type == NODE_FUNCTION_CALL) {
             DataSet *ds = dataset_registry_get(child->value);
             if (!ds) {

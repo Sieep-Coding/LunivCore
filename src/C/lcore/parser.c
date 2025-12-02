@@ -11,6 +11,7 @@ static ASTNode *parse_dataset(Parser *parser);
 static ASTNode *parse_plot(Parser *parser);
 static ASTNode *parse_export(Parser *parser);
 static ASTNode *parse_view(Parser *parser);
+static ASTNode *parse_text(Parser *parser);
 
 static void parser_advance(Parser *parser) {
     token_free(&parser->current_token);
@@ -108,14 +109,36 @@ static ASTNode *parse_view(Parser *parser) {
 
     while (parser->current_token.type != TOKEN_RBRACE &&
            parser->current_token.type != TOKEN_EOF) {
-        ASTNode *row = parse_row(parser);
-        ast_add_child(view_node, row);
+
+        if (parser->current_token.type == TOKEN_TEXT) {
+            ASTNode *text_node = parse_text(parser);
+            ast_add_child(view_node, text_node);
+        } else if (parser->current_token.type == TOKEN_IDENTIFIER) {
+            ASTNode *row = parse_row(parser);
+            ast_add_child(view_node, row);
+        } else {
+            fprintf(stderr, "Unexpected token in view at line %d, column %d\n",
+                    parser->current_token.line, parser->current_token.column);
+            exit(1);
+        }
     }
 
     parser_expect(parser, TOKEN_RBRACE);
     parser_advance(parser);
 
     return view_node;
+}
+
+
+static ASTNode *parse_text(Parser *parser) {
+    parser_expect(parser, TOKEN_TEXT);
+    parser_advance(parser);
+
+    parser_expect(parser, TOKEN_STRING);
+    char *value = strdup(parser->current_token.lexeme);
+    parser_advance(parser);
+
+    return ast_new(NODE_TEXT, NULL, value, 0);
 }
 
 static ASTNode *parse_plot(Parser *parser) {
@@ -188,6 +211,10 @@ ASTNode *parser_parse(Parser *parser) {
                  strcmp(parser->current_token.lexeme, "export") == 0) {
             ASTNode *export_node = parse_export(parser);
             ast_add_child(root, export_node);
+        }
+        else if (parser->current_token.type == TOKEN_TEXT) {
+            ASTNode *text_node = parse_text(parser);
+            ast_add_child(root, text_node);
         }
         else if (parser->current_token.type == TOKEN_SUM ||
          parser->current_token.type == TOKEN_AVG ||

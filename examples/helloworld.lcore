@@ -1,5 +1,7 @@
 # Sales Report Q1 (examples/helloworld.lcore)
 
+text "Regional sales are strong this year in the West."
+
 dataset Sales "Q1 Regional Sales" {
     North: 340
     South: 120
@@ -9,10 +11,11 @@ dataset Sales "Q1 Regional Sales" {
 
 plot Sales as bar
 
-dataset Sales2 "Q2 Regional Sales" {
-    North: 140
-    South: 620
-    East: 510
-    West: 250
+view MarketShare "Market Share by Segment (%)" {
+    SegmentA: 90
+    SegmentB: 8
+    SegmentC: 2
+    text "Analysis Notes: North dominates the market."
+    text "Segments B and C are negligible."
 }
-plot Sales2 as bar
+plot MarketShare as bar

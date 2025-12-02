@@ -27,6 +27,8 @@ static int l_dataset_avg(lua_State *L);
 static int l_dataset_min(lua_State *L);
 static int l_dataset_max(lua_State *L);
 static int l_dataset_count(lua_State *L);
+static int l_render_view_table(lua_State *L);
+static int l_bi_text(lua_State *L);
 
 
 /* BI.Dataset methods */
@@ -46,6 +48,8 @@ static const struct luaL_Reg dataset_methods[] = {
 static const struct luaL_Reg bi_lib_funcs[] = {
     {"new",  l_dataset_new},
     {"eval", l_bi_eval},
+    {"text", l_bi_text},
+    {"render_view", l_render_view_table},
     {NULL, NULL}
 };
 
@@ -75,6 +79,28 @@ static int l_dataset_add(lua_State *L) {
 static int l_dataset_plot(lua_State *L) {
     DataSet *ds = luaL_checkudata(L, 1, "BI.Dataset");
     dataset_plot(ds);
+    return 0;
+}
+
+static int l_bi_text(lua_State *L) {
+    const char *text = luaL_checkstring(L, 1);
+
+    // Check for current view context
+    lua_getfield(L, LUA_REGISTRYINDEX, "BI.current_view");
+    ASTNode *current_view = lua_touserdata(L, -1);
+    lua_pop(L, 1);
+
+    ASTNode *node = ast_new(NODE_TEXT, NULL, strdup(text), 0);
+
+    if (current_view) {
+        // Attach to current view
+        ast_add_child(current_view, node);
+    } else {
+        // Standalone note: render a single box
+        render_text(node);
+        ast_free(node);
+    }
+
     return 0;
 }
 
@@ -173,3 +199,77 @@ static int l_dataset_count(lua_State *L) {
     lua_pushinteger(L, (lua_Integer)c);
     return 1;
 }
+
+static int l_render_view_table(lua_State *L) {
+    luaL_checktype(L, 1, LUA_TTABLE);
+
+    // Extract title
+    lua_getfield(L, 1, "title");
+    const char *title = lua_tostring(L, -1);
+    lua_pop(L, 1);
+    if (!title || title[0] == '\0') title = "VIEW";
+
+    ASTNode *view_node = ast_new(NODE_VIEW, NULL, strdup(title), 0);
+
+    // Set as current view context in registry
+    lua_pushlightuserdata(L, view_node);
+    lua_setfield(L, LUA_REGISTRYINDEX, "BI.current_view");
+
+    // Add rows
+    lua_getfield(L, 1, "rows");
+    if (lua_istable(L, -1)) {
+        size_t n = lua_rawlen(L, -1);
+        for (size_t i = 1; i <= n; i++) {
+            lua_rawgeti(L, -1, i);
+            if (lua_istable(L, -1)) {
+                lua_getfield(L, -1, "name");
+                const char *name = lua_tostring(L, -1);
+                lua_pop(L, 1);
+
+                lua_getfield(L, -1, "value");
+                int value = (int)lua_tointeger(L, -1);
+                lua_pop(L, 1);
+
+                ASTNode *row = ast_new(NODE_ROW, strdup(name), NULL, value);
+                ast_add_child(view_node, row);
+            }
+            lua_pop(L, 1);
+        }
+    }
+    lua_pop(L, 1);
+
+    // Add children (supports text nodes)
+    lua_getfield(L, 1, "children");
+    if (lua_istable(L, -1)) {
+        size_t n = lua_rawlen(L, -1);
+        for (size_t i = 1; i <= n; i++) {
+            lua_rawgeti(L, -1, i);
+            if (lua_istable(L, -1)) {
+                lua_getfield(L, -1, "type");
+                const char *type = lua_tostring(L, -1);
+                lua_pop(L, 1);
+
+                if (type && strcmp(type, "text") == 0) {
+                    lua_getfield(L, -1, "value");
+                    const char *val = lua_tostring(L, -1);
+                    lua_pop(L, 1);
+
+                    ASTNode *text_node = ast_new(NODE_TEXT, NULL, strdup(val), 0);
+                    ast_add_child(view_node, text_node);
+                }
+            }
+            lua_pop(L, 1);
+        }
+    }
+    lua_pop(L, 1);
+
+    // Clear current view context
+    lua_pushnil(L);
+    lua_setfield(L, LUA_REGISTRYINDEX, "BI.current_view");
+
+    render_view(view_node);
+    ast_free(view_node);
+
+    return 0;
+}
+

@@ -28,6 +28,7 @@ typedef enum {
     NODE_JOIN,          /* New: dataset joins */
     NODE_COMPUTED_COL,  /* New: computed/derived columns */
     NODE_FUNCTION_CALL, /* New: function calls */
+    NODE_TEXT
 } NodeType;
 
 /* Aggregation function types */
