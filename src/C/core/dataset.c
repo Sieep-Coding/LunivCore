@@ -100,3 +100,43 @@ void dataset_registry_free() {
     BI_Registry.count = 0;
     fprintf(stderr, "BI_Registry: Cleaned up and freed all datasets.\n");
 }
+
+/* ---------- Aggregation Helpers ---------- */
+
+long dataset_sum(const DataSet *ds) {
+    if (!ds || ds->count == 0) return 0;
+    long s = 0;
+    for (size_t i = 0; i < ds->count; ++i) {
+        s += ds->values[i];
+    }
+    return s;
+}
+
+double dataset_avg(const DataSet *ds) {
+    if (!ds || ds->count == 0) return 0.0;
+    long s = dataset_sum(ds);
+    return (double)s / (double)ds->count;
+}
+
+int dataset_min(const DataSet *ds) {
+    if (!ds || ds->count == 0) return 0;
+    int m = ds->values[0];
+    for (size_t i = 1; i < ds->count; ++i) {
+        if (ds->values[i] < m) m = ds->values[i];
+    }
+    return m;
+}
+
+int dataset_max(const DataSet *ds) {
+    if (!ds || ds->count == 0) return 0;
+    int m = ds->values[0];
+    for (size_t i = 1; i < ds->count; ++i) {
+        if (ds->values[i] > m) m = ds->values[i];
+    }
+    return m;
+}
+
+size_t dataset_count(const DataSet *ds) {
+    if (!ds) return 0;
+    return ds->count;
+}

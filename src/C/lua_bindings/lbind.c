@@ -21,13 +21,26 @@ static int l_dataset_new(lua_State *L);
 static int l_dataset_add(lua_State *L);
 static int l_dataset_plot(lua_State *L);
 static int l_bi_eval(lua_State *L);
+/* Aggregation forward declarations */
+static int l_dataset_sum(lua_State *L);
+static int l_dataset_avg(lua_State *L);
+static int l_dataset_min(lua_State *L);
+static int l_dataset_max(lua_State *L);
+static int l_dataset_count(lua_State *L);
+
 
 /* BI.Dataset methods */
 static const struct luaL_Reg dataset_methods[] = {
-    {"add",  l_dataset_add},
-    {"plot", l_dataset_plot},
+    {"add",   l_dataset_add},
+    {"plot",  l_dataset_plot},
+    {"sum",   l_dataset_sum},
+    {"avg",   l_dataset_avg},
+    {"min",   l_dataset_min},
+    {"max",   l_dataset_max},
+    {"count", l_dataset_count},
     {NULL, NULL}
 };
+
 
 /* BI global namespace */
 static const struct luaL_Reg bi_lib_funcs[] = {
@@ -124,4 +137,39 @@ void lbind_run_file(const char *path) {
     }
 
     lua_close(L);
+}
+
+static int l_dataset_sum(lua_State *L) {
+    DataSet *ds = luaL_checkudata(L, 1, "BI.Dataset");
+    long s = dataset_sum(ds);
+    lua_pushinteger(L, (lua_Integer)s);
+    return 1;
+}
+
+static int l_dataset_avg(lua_State *L) {
+    DataSet *ds = luaL_checkudata(L, 1, "BI.Dataset");
+    double a = dataset_avg(ds);
+    lua_pushnumber(L, (lua_Number)a);
+    return 1;
+}
+
+static int l_dataset_min(lua_State *L) {
+    DataSet *ds = luaL_checkudata(L, 1, "BI.Dataset");
+    int m = dataset_min(ds);
+    lua_pushinteger(L, m);
+    return 1;
+}
+
+static int l_dataset_max(lua_State *L) {
+    DataSet *ds = luaL_checkudata(L, 1, "BI.Dataset");
+    int m = dataset_max(ds);
+    lua_pushinteger(L, m);
+    return 1;
+}
+
+static int l_dataset_count(lua_State *L) {
+    DataSet *ds = luaL_checkudata(L, 1, "BI.Dataset");
+    size_t c = dataset_count(ds);
+    lua_pushinteger(L, (lua_Integer)c);
+    return 1;
 }

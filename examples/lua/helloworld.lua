@@ -1,4 +1,4 @@
--- config.lua
+-- helloworld.lua
 print("BI Engine: Starting Analysis...")
 
 -- 1. Create a new Dataset using our C constructor

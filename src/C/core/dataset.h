@@ -56,4 +56,12 @@ DataSet *dataset_registry_get(const char *name);
 /* Free all dynamically allocated datasets in the registry */
 void dataset_registry_free();
 
+/* Aggregation helpers */
+long dataset_sum(const DataSet *ds);
+double dataset_avg(const DataSet *ds);
+int dataset_min(const DataSet *ds);
+int dataset_max(const DataSet *ds);
+size_t dataset_count(const DataSet *ds);
+
+
 #endif

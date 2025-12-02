@@ -100,7 +100,12 @@ sudo pacman -S base-devel lua
 │   │   │   └── parser.h          
 │   │   │   ├── render.c
 │   │   │   └── render.h
-│   │   ├── lua_bindings/       
+│   │   ├── lua_bindings/
+│   │   │   ├── lbind.c
+│   │   │   └── lbind.h
+|   |   |   
+│   │   └── lcore_exec.c
+│   │   └── lcore_exec.h                    
 │   │   └── main.c              
 │   └── lua/           
 │       │
@@ -110,6 +115,9 @@ sudo pacman -S base-devel lua
 │           └── utils.lua
 └── examples/
     └── helloworld.lcore
+    └── quarterly_review.lcore
+    ├── lua/ 
+        ├── helloworld.lua 
 
 ```
 
