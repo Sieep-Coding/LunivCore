@@ -14,9 +14,9 @@ plot Products as bar
 # Note: View is used for derived data
 
 view MarketShare "Market Share by Segment (%)" {
-    SegmentA: 55
-    SegmentB: 30
-    SegmentC: 15
+    SegmentA: 98
+    SegmentB: 1
+    SegmentC: 1
 }
 plot MarketShare as bar
 
