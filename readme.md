@@ -1,11 +1,14 @@
 <div id="top" align="center">
     
 ![](assets/lunivcore-logo.png)
+
+#### A New Way to Build Data Apps: Orchestrate analytics, logic, and visualization as code.
+
 ### [**EXAMPLES**](https://github.com/Sieep-Coding/LunivCore/tree/main/examples) | [**WEBSITE**](https://lunivcore.vercel.app/) | [**LUA**](https://www.lua.org/)
 
 </div>
 
-# LunivCore Framework — Business Intelligence as Code
+# LunivCore Framework: Business Intelligence as Code
 
 Build dashboards, analytical reports, and entire BI workflows using `Lua` or the purpose-built `lcore` language without the overhead of traditional enterprise tools.
 
