@@ -1,27 +1,20 @@
 <div id="top" align="center">
     
 ![](assets/lunivcore-logo.png)
-
-##### Business Intelligence as Code: Generate reports using `lcore`, a SQL and markdown inspired language.
-#### [EXAMPLES](https://github.com/Sieep-Coding/LunivCore/tree/main/examples) | [WEBSITE](https://lunivcore.vercel.app/)
-##### Or use with [Lua](https://www.lua.org/)
-##### Get started by reading the [docs.](https://lunivcore.vercel.app/)
+### [**EXAMPLES**](https://github.com/Sieep-Coding/LunivCore/tree/main/examples) | [**WEBSITE**](https://lunivcore.vercel.app/) | [**LUA**](https://www.lua.org/)
 
 </div>
 
-# LunivCore — Business Intelligence as Code
-A lightweight, expressive BI language built for engineers who want full control over their analytics stack. 
+# LunivCore Framework — Business Intelligence as Code
 
-LunivCore combines a Markdown-inspired syntax with a compact C/Lua execution core to deliver high performance, extensibility, and transparent data operations.
+Build dashboards, analytical reports, and entire BI workflows using `Lua` or the purpose-built `lcore` language without the overhead of traditional enterprise tools.
 
-This monorepo includes the interpreter, documentation, and supporting tools for building end-to-end BI workflows programmatically.
+This monorepo houses the full `LunivCore` ecosystem: 
+- a compact C/Lua interpreter
+- structured documentation
+- development utilities designed to deliver a fast, extensible, and highly maintainable BI platform.
 
-## Why Now?
-> I built `LunivCore` after getting tired of the constraints of traditional enterprise BI platforms. Instead of relying on a Markdown-driven system like [evidence](https://github.com/evidence-dev/evidence/), I wanted a lower-level foundation. Something lean, predictable, and fully under my control. Using C and Lua gives me that flexibility.
->
-> This gives me the freedom to layer features on top such as Markdown rendering, web output, and anything else in deliberate manner.
->
->  -Nick
+We provide a foundation for teams seeking to standardize analytics as code, accelerate experimentation, and integrate BI logic directly into their application stack.
 
 # See It In Action
 
@@ -244,6 +237,12 @@ sudo pacman -S base-devel lua
 ```
 
 
+## Why Now?
+> I built `LunivCore` after getting tired of the constraints of traditional enterprise BI platforms. Instead of relying on a Markdown-driven system like [evidence](https://github.com/evidence-dev/evidence/), I wanted a lower-level foundation. Something lean, predictable, and fully under my control. Using C and Lua gives me that flexibility.
+>
+> This gives me the freedom to layer features on top such as Markdown rendering, web output, and anything else in deliberate manner.
+>
+>  -Nick
 
 # License
 
