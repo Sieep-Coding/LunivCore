@@ -1,5 +1,6 @@
 bi_tool
 lcore
+test_dp_dataset
 
 *.o
 *.a
