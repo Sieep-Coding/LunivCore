@@ -2,25 +2,26 @@
     
 ![](assets/lunivcore-logo.png)
 
-##### Business Intelligence as Code: Generate reports using `lcore`, a SQL and markdown inspired language.
-#### [EXAMPLES](https://github.com/Sieep-Coding/LunivCore/tree/main/examples) | [WEBSITE](https://lunivcore.vercel.app/)
-##### Or use with [Lua](https://www.lua.org/)
-##### Get started by reading the [docs.](https://lunivcore.vercel.app/)
+#### A New Way to Build Data Apps: Orchestrate analytics, logic, and visualization as code.
+
+### [**EXAMPLES**](https://github.com/Sieep-Coding/LunivCore/tree/main/examples) | [**WEBSITE**](https://lunivcore.vercel.app/) | [**LUA**](https://www.lua.org/)
 
 </div>
 
-## Why Now?
-The goal of `LunivCore` is to enable **"BI-as-Code"**, allowing analysts to define complex reports without requiring re-compilation of the core engine.
+# LunivCore Framework: Business Intelligence as Code
 
-> I built `LunivCore` after getting tired of the constraints of traditional enterprise BI platforms. Instead of relying on a Markdown-driven system like [evidence](https://github.com/evidence-dev/evidence/), I wanted a lower-level foundation. Something lean, predictable, and fully under my control. Using C and Lua gives me that flexibility.
->
-> This gives me the freedom to layer features on top such as Markdown rendering, web output, and anything else in deliberate manner.
->
->  Nick, LunivCore creator
+Build dashboards, analytical reports, and entire BI workflows using `Lua` or the purpose-built `lcore` language without the overhead of traditional enterprise tools.
+
+This monorepo houses the full `LunivCore` ecosystem: 
+- a compact C/Lua interpreter
+- structured documentation
+- development utilities designed to deliver a fast, extensible, and highly maintainable BI platform.
+
+We provide a foundation for teams seeking to standardize analytics as code, accelerate experimentation, and integrate BI logic directly into their application stack.
 
 # See It In Action
 
-LunivCore is an open-source, engineer focused alternative to PowerBI, Tableau, and other business intelligence tool.
+LunivCore is an open-source, engineer focused alternative to [PowerBI](https://www.microsoft.com/en-us/power-platform/products/power-bi), [Juypter Notebook](https://jupyter.org/), [evidence.dev](https://evidence.dev/), [Tableau](https://www.tableau.com/), [Streamlit](https://streamlit.io/), [Shiny](https://shiny.posit.co/), and other business intelligence/reporting tool.
 
 Instantly start answering the most important questions for your business.
 
@@ -239,6 +240,12 @@ sudo pacman -S base-devel lua
 ```
 
 
+## Why Now?
+> I built `LunivCore` after getting tired of the constraints of traditional enterprise BI platforms. Instead of relying on a Markdown-driven system like [evidence](https://github.com/evidence-dev/evidence/), I wanted a lower-level foundation. Something lean, predictable, and fully under my control. Using C and Lua gives me that flexibility.
+>
+> This gives me the freedom to layer features on top such as Markdown rendering, web output, and anything else in deliberate manner.
+>
+>  -Nick
 
 # License
 
