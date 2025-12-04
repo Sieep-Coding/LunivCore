@@ -1,0 +1,42 @@
+# Test LCore Chart Rendering
+
+# Test 1: Simple dataset with all chart types
+
+text "monthly sales"
+dataset sales "Monthly Sales" {
+    January: 450
+    February: 620
+    March: 380
+    April: 790
+    May: 890
+}
+
+# Render as different chart types
+plot sales as bar
+plot sales as line
+plot sales as pie
+plot sales as table
+plot sales as histogram
+plot sales as scatter
+
+# Test 2: Regional data
+dataset regions "Regional Sales" {
+    North: 2500
+    South: 1800
+    East: 1200
+    West: 2900
+}
+
+plot regions as pie
+plot regions as bar
+
+# Test 3: Aggregations
+sum sales
+avg sales
+min sales
+max sales
+count sales
+
+sum regions
+avg regions
+max regions
