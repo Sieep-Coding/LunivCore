@@ -60,8 +60,7 @@ The breakdown between User Time (program logic) and System Time (I/O) confirms h
 * For large datasets (Tests 2–5), the process is **CPU-bound** (e.g., in Test 5, **User Time is approx 5 times greater than System Time**).
 * This indicates the bottleneck is the sheer speed of the CPU executing the optimized parsing and calculation logic, not waiting for slow disk I/O. 
 
-
-
-
 ### 4. Mixed Data Source Overhead
-When loading complex formats like **JSON** or connecting to **SQLite**, the overall throughput drops significantly. This is due to the necessary overhead of complex parsing state machines and database connection latency, confirming that LunivCore's speed advantage is maximized on flat, streamable data like CSV.
+When loading complex formats like **JSON** or connecting to **SQLite**, the overall throughput drops significantly. 
+
+This is due to the necessary overhead of complex parsing state machines and database connection latency, confirming that LunivCore's speed advantage is maximized on flat, streamable data like CSV.
