@@ -184,6 +184,20 @@ LunivCore generates a terminal-dashboard or website from markdown-inspired `.lco
 * **Support:** On-going, lifetime support from the passionate dev team at [Luniv Technology](https://luniv.tech/)
 
 
+## Benchmark Results
+
+The following table summarizes the performance as the dataset size scaled by a factor of nearly **3,000x** (from 5.5K to 11.9M rows).
+
+| Test | Dataset Count (Rows) | Executed Time (ms) | User Time (ms) | System Time (ms) | Throughput |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **1** | 5,508 | 1.64 | 0.23 | 1.47 | **approx 3.3 million rows per second** |
+| **2** | 396,647 | 13.46 | 11.05 | 2.41 | **approx 29.5 million rows per second** |
+| **3** | 3,173,183 | 88.27 | 78.76 | 9.14 | **approx 35.9 million rows per second** |
+| **4** | 6,346,367 | 169.73 | 138.69 | 30.48 | **approx 37.4 million rows per second** |
+| **5** | **11,908,037** | **367.70** | **304.11** | **60.99** | **approx 32.4 million rows per second\*** |
+
+[Read the full report.](https://lunivcore.vercel.app/performance/benchmark)
+
 ## Getting Started
 
 ### Prerequisites (CachyOS / Arch Linux)
