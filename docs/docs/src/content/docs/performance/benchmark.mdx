@@ -30,11 +30,11 @@ The following table summarizes the performance as the dataset size scaled by a f
 | **2** | 396,647 | 13.46 | 11.05 | 2.41 | **approx 29.5 million rows per second** |
 | **3** | 3,173,183 | 88.27 | 78.76 | 9.14 | **approx 35.9 million rows per second** |
 | **4** | 6,346,367 | 169.73 | 138.69 | 30.48 | **approx 37.4 million rows per second** |
-| **5** | **11,908,037** | **367.70** | **304.11** | **60.99** | **approx 32.4 million rows per second** |
+| **5** | **11,908,037** | **367.70** | **304.11** | **60.99** | **approx 32.4 million rows per second\*** |
 
 <Aside>
 
-**Impact of Memory Hierarchy:** The slight decrease in RPS in Test 5 (approx 32.4) is likely due to the dataset size exceeding the CPU's last-level cache (L3) and requiring more time to fetch data from main RAM. 
+* **Impact of Memory Hierarchy:** The slight decrease in RPS in Test 5 (approx 32.4) is likely due to the dataset size exceeding the CPU's last-level cache (L3) and requiring more time to fetch data from main RAM. 
 
 This is a normal, physical limitation of computer architecture.
 
