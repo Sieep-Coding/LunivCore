@@ -198,62 +198,6 @@ The following table summarizes the performance as the dataset size scaled by a f
 
 [Read the full report.](https://lunivcore.vercel.app/performance/benchmark)
 
-## Getting Started
-
-### Prerequisites (CachyOS / Arch Linux)
-
-Since this project is built on CachyOS, you will need the standard development toolchain and Lua libraries:
-
-```bash
-sudo pacman -S base-devel lua
-```
-
-### Current structure
-```text
-/lunivcore
-│
-├── Makefile
-│
-├── src/
-│   │
-│   ├── C/               
-│   │   │
-│   │   ├── core/             
-│   │   │   ├── dataset.c
-│   │   │   └── dataset.h
-│   │   ├── data_processing/             
-│   │   │   ├── dataset.c
-│   │   │   └── dataset.h
-│   │   ├── lcore/           
-│   │   │   ├── ast.c
-│   │   │   ├── ast.h
-│   │   │   ├── lexer.c
-│   │   │   ├── lexer.h
-│   │   │   ├── parser.c
-│   │   │   └── parser.h          
-│   │   │   ├── render.c
-│   │   │   └── render.h
-│   │   ├── lua_bindings/
-│   │   │   ├── lbind.c
-│   │   │   └── lbind.h
-|   |   |   
-│   │   └── lcore_exec.c
-│   │   └── lcore_exec.h                    
-│   │   └── main.c              
-│   └── lua/           
-│       │
-│       ├── config.lua          
-│       └── dsl/
-│           ├── dataset.lua
-│           └── utils.lua
-└── examples/
-    └── helloworld.lcore
-    └── quarterly_review.lcore
-    ├── lua/ 
-        ├── helloworld.lua 
-
-```
-
 
 ## Why Now?
 > I built `LunivCore` after getting tired of the constraints of traditional enterprise BI platforms. Instead of relying on a Markdown-driven system like [evidence](https://github.com/evidence-dev/evidence/), I wanted a lower-level foundation. Something lean, predictable, and fully under my control. Using C and Lua gives me that flexibility.
