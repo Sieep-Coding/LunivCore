@@ -179,8 +179,8 @@ LunivCore generates a terminal-dashboard or website from markdown-inspired `.lco
 - **Loops** and **If / Else** statements allow control of what is displayed to users
 - **Coded for Performance**: LunivCore is made with **C**, enabling high-performance.
 - **Production-Grade**: Ships with a [Lua unit testing framework.](https://github.com/Sieep-Coding/LunivCore/tree/main/src/lua/Check-Your-Lua)
-* **Portable:** Built using standard C (C99) and the embeddable Lua library.
-* **Support:** On-going, lifetime support from the passionate dev team at [Luniv Technology](https://luniv.tech/)
+- **Portable:** Built using standard C (C99) and the embeddable Lua library.
+- **Support:** On-going, lifetime support from the passionate dev team at [Luniv Technology](https://luniv.tech/)
 
 ## Benchmark Results
 
