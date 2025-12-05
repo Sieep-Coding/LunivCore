@@ -1,0 +1,7 @@
+dataset Sales "Q1 Revenue" {
+    APAC: 2850
+    Americas: 3450
+    EMEA: 1920
+}
+
+plot Sales as bar
