@@ -9,6 +9,7 @@ SRC_DIR = src/C
 CORE_DIR = $(SRC_DIR)/core
 LUA_BIND_DIR = $(SRC_DIR)/lua_bindings
 LCORE_DIR = $(SRC_DIR)/lcore
+DP_DIR = $(SRC_DIR)/data_processing
 
 # Example scripts
 EXAMPLES_DIR = examples
@@ -23,8 +24,8 @@ LCORE_EXAMPLES = $(EXAMPLES_DIR)/mixed.lcore \
                  $(EXAMPLES_DIR)/analytics.lcore
 
 # Compiler flags - Added -lm for math library (required for render.c)
-CFLAGS = -Wall -Wextra -I$(SRC_DIR) -I$(LUA_BIND_DIR) -I$(CORE_DIR)
-LDFLAGS = -llua -lm
+CFLAGS = -Wall -Wextra -I$(SRC_DIR) -I$(LUA_BIND_DIR) -I$(CORE_DIR) -I$(DP_DIR)
+LDFLAGS = -llua -lm -lsqlite3 -ljson-c
 
 # Source files (dataset.c must appear before lbind.c)
 # render.c added to support chart rendering
@@ -35,7 +36,8 @@ SOURCES = $(SRC_DIR)/main.c \
           $(SRC_DIR)/lcore/lexer.c \
           $(SRC_DIR)/lcore/parser.c \
           $(SRC_DIR)/lcore/render.c \
-          $(LUA_BIND_DIR)/lbind.c
+          $(LUA_BIND_DIR)/lbind.c \
+          $(DP_DIR)/dp_dataset.c
 
 # Object files
 OBJECTS = $(SOURCES:.c=.o)

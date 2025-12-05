@@ -3,6 +3,7 @@
 
 /* Refactored component headers */
 #include "lua_bindings/lbind.h"
+#include "data_processing/dp_dataset.h"
 #include "lcore_exec.h"
 
 /* ---------------------------- */
@@ -27,11 +28,31 @@ static int is_lcore(const char *ext) {
 /* ---------------------------- */
 
 int main(int argc, char **argv) {
-    if (argc < 2) {
-        printf("Usage: %s <file.lua | file.lcore>\n", argv[0]);
-        return 1;
+
+    DP_DataSet *csv_ds = dp_dataset_load_csv("src/C/data/sample.csv");
+    DP_DataSet *json_ds = dp_dataset_load_json("src/C/data/sample.json");
+    DP_DataSet *sqlite_ds = dp_dataset_load_sqlite("src/C/data/test.db", "test_table");
+
+    if (csv_ds) {
+        printf("CSV dataset count: %zu\n", dp_dataset_count(csv_ds));
+        dp_dataset_free(csv_ds);
+    } else {
+        printf("Failed to load CSV dataset\n");
     }
 
+    if (json_ds) {
+        printf("JSON dataset count: %zu\n", dp_dataset_count(json_ds));
+        dp_dataset_free(json_ds);
+    } else {
+        printf("Failed to load JSON dataset\n");
+    }
+
+    if (sqlite_ds) {
+        printf("SQLite dataset count: %zu\n", dp_dataset_count(sqlite_ds));
+        dp_dataset_free(sqlite_ds);
+    } else {
+        printf("Failed to load SQLite dataset\n");
+    }
     const char *path = argv[1];
     const char *ext = get_extension(path);
 

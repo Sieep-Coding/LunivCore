@@ -1,0 +1,68 @@
+---
+title: LunivCore Performance Benchmark
+description: Detailed analysis of LunivCore's C core throughput and scaling efficiency using CSV datasets.
+---
+
+import { Steps, Tabs, TabItem, Aside, Card, CardGrid } from '@astrojs/starlight/components';
+
+
+The core engine sustained a performance rate consistently in the **32–37 Million Rows Per Second (RPS)** range, validating its "C-Level Performance" goal for analytical workloads.
+
+---
+
+## 🔬 Methodology
+
+### Goal
+Measure the **Rows Per Second (RPS)** throughput of the `lcore` executable when performing a full scan and aggregation (e.g., `dataset:sum()`) on CSV data.
+
+### Environment
+The benchmarks were run on a CachyOS (Arch-based) environment, utilizing the `time ./lcore` command to capture wall-clock time and CPU time.
+
+---
+
+## Benchmark Results
+
+The following table summarizes the performance as the dataset size scaled by a factor of nearly **3,000x** (from 5.5K to 11.9M rows).
+
+| Test | Dataset Count (Rows) | Executed Time (ms) | User Time (ms) | System Time (ms) | Throughput (RPS) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **1** | 5,508 | 1.64 | 0.23 | 1.47 | **approx 3.3** |
+| **2** | 396,647 | 13.46 | 11.05 | 2.41 | **approx 29.5** |
+| **3** | 3,173,183 | 88.27 | 78.76 | 9.14 | **approx 35.9** |
+| **4** | 6,346,367 | 169.73 | 138.69 | 30.48 | **approx 37.4** |
+| **5** | **11,908,037** | **367.70** | **304.11** | **60.99** | **approx 32.4** |
+
+---
+
+## Key Findings
+
+### 1. Consistent C-Level Throughput
+The engine consistently sustained a processing rate of **32–37 million rows per second** once the initial low-volume I/O overhead was cleared (Test 1). 
+
+This performance validates the core decision to build a high-performance analytics engine using C.
+
+### 2. Near-Linear Scaling
+The execution time scales nearly linearly with the input size. 
+
+For example, doubling the rows from 6.3M to 11.9M resulted in a proportional increase in execution time (169 ms to 367 ms). 
+
+This demonstrates a robust **O(n) complexity** with minimal overhead, suitable for massive datasets.
+
+### 3. CPU-Bound Efficiency
+The breakdown between User Time (program logic) and System Time (I/O) confirms high efficiency:
+
+* For large datasets (Tests 2–5), the process is **CPU-bound** (e.g., in Test 5, **User Time is approx 5 times greater than System Time**).
+* This indicates the bottleneck is the sheer speed of the CPU executing the optimized parsing and calculation logic, not waiting for slow disk I/O. 
+
+
+
+<Aside>
+
+**Impact of Memory Hierarchy:** The slight decrease in RPS in Test 5 (approx 32.4) is likely due to the dataset size exceeding the CPU's last-level cache (L3) and requiring more time to fetch data from main RAM. 
+
+This is a normal, physical limitation of computer architecture.
+
+</Aside>
+
+### 4. Mixed Data Source Overhead
+When loading complex formats like **JSON** or connecting to **SQLite**, the overall throughput drops significantly. This is due to the necessary overhead of complex parsing state machines and database connection latency, confirming that LunivCore's speed advantage is maximized on flat, streamable data like CSV.
