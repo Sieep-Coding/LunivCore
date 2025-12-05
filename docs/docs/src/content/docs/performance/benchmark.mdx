@@ -32,11 +32,10 @@ The following table summarizes the performance as the dataset size scaled by a f
 | **4** | 6,346,367 | 169.73 | 138.69 | 30.48 | **approx 37.4 million rows per second** |
 | **5** | **11,908,037** | **367.70** | **304.11** | **60.99** | **approx 32.4 million rows per second** |
 
----
 
 ## Key Findings
 
-### 1. Consistent C-Level Throughput
+### 1. Consistent Throughput
 The engine consistently sustained a processing rate of **32–37 million rows per second** once the initial low-volume I/O overhead was cleared (Test 1). 
 
 This performance validates the core decision to build a high-performance analytics engine using C.
