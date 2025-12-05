@@ -1,42 +1,61 @@
-# Test LCore Chart Rendering
+# Exploratory Data Analysis Journal with LCore
 
-# Test 1: Simple dataset with all chart types
+text "Exploratory Analysis With LunivCore"
 
-text "monthly sales"
-dataset sales "Monthly Sales" {
-    January: 450
-    February: 620
-    March: 380
-    April: 790
-    May: 890
+text "Process Data"
+
+# Loading dataset with regional sales information
+dataset regional_sales "Journal #1 Data (Sales $)" {
+    Midwest: 1124
+    Northeast: 2545
+    West: 728
+    South: 1954
+    Texas: 1720
+    California: 2140
 }
 
-# Render as different chart types
-plot sales as bar
-plot sales as line
-plot sales as pie
-plot sales as table
-plot sales as histogram
-plot sales as scatter
+text "First, we need to get some basic statistics."
 
-# Test 2: Regional data
-dataset regions "Regional Sales" {
-    North: 2500
-    South: 1800
-    East: 1200
-    West: 2900
+# Statistical summary
+sum regional_sales
+avg regional_sales
+min regional_sales
+max regional_sales
+count regional_sales
+
+text "Now let us visualize the data distribution"
+
+# Bar chart showing absolute sales values
+plot regional_sales as bar
+
+# Pie chart showing proportional distribution
+plot regional_sales as pie
+
+text "Analyzing regional performance"
+
+# Line chart for comparative trend visualization
+plot regional_sales as line
+
+# Histogram for distribution analysis
+plot regional_sales as histogram
+
+text "Scatter plot showing individual regional values"
+
+plot regional_sales as scatter
+
+text "Key Findings"
+
+# Table view for detailed reference
+plot regional_sales as table
+
+text "Conclusion"
+
+# Additional dataset for comparison
+dataset top_regions "Top Performing Regions" {
+    California: 2140
+    Northeast: 2545
 }
 
-plot regions as pie
-plot regions as bar
+text "Performance Leaders"
 
-# Test 3: Aggregations
-sum sales
-avg sales
-min sales
-max sales
-count sales
-
-sum regions
-avg regions
-max regions
+plot top_regions as bar
