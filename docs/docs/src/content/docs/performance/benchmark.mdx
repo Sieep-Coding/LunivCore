@@ -32,6 +32,13 @@ The following table summarizes the performance as the dataset size scaled by a f
 | **4** | 6,346,367 | 169.73 | 138.69 | 30.48 | **approx 37.4 million rows per second** |
 | **5** | **11,908,037** | **367.70** | **304.11** | **60.99** | **approx 32.4 million rows per second** |
 
+<Aside>
+
+**Impact of Memory Hierarchy:** The slight decrease in RPS in Test 5 (approx 32.4) is likely due to the dataset size exceeding the CPU's last-level cache (L3) and requiring more time to fetch data from main RAM. 
+
+This is a normal, physical limitation of computer architecture.
+
+</Aside>
 
 ## Key Findings
 
@@ -55,13 +62,6 @@ The breakdown between User Time (program logic) and System Time (I/O) confirms h
 
 
 
-<Aside>
-
-**Impact of Memory Hierarchy:** The slight decrease in RPS in Test 5 (approx 32.4) is likely due to the dataset size exceeding the CPU's last-level cache (L3) and requiring more time to fetch data from main RAM. 
-
-This is a normal, physical limitation of computer architecture.
-
-</Aside>
 
 ### 4. Mixed Data Source Overhead
 When loading complex formats like **JSON** or connecting to **SQLite**, the overall throughput drops significantly. This is due to the necessary overhead of complex parsing state machines and database connection latency, confirming that LunivCore's speed advantage is maximized on flat, streamable data like CSV.
