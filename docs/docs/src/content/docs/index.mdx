@@ -21,16 +21,6 @@ hero:
 
 import { Aside, Card, CardGrid, LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
-# LunivCore: Business Intelligence As Code
-
-#### The Engineer's BI Engine.
-
-LunivCore is the **Developer First** solution for analytics, bringing the rigor of **Source Code Management** to Business Intelligence. 
-
-Stop fighting black-box calculations, slow deployments, and vendor lock-in.
-
----
-
 ## The LunivCore Advantage
 
 We built a BI tool that thinks like an engineering team.
@@ -89,20 +79,100 @@ Analytics should be auditable, readable code. The LunivCore DSL lets engineers w
     </TabItem>
     <TabItem label="Lua Integration">
    Build complex, reusable logic:
-
+  
+    ## Value Card
     ```lua
-    local sales = BI.new("YoY Growth Analysis")
+    print("\n>>> Integrated Dashboard View\n")
+    BI.render_view({
+        title = "EXECUTIVE DASHBOARD",
+        rows = {
+            {name = "Total Revenue", value = 12500},
+            {name = "Profit Margin", value = 3750},
+            {name = "Customer Count", value = 850},
+            {name = "Market Share", value = 2340},
+        }
+    })
+    ```
+    #### Output (Generated through the Lua VM)
+    ```text
+    >>> Integrated Dashboard View
 
-    local current_revenue = 8700000
-    local last_year_revenue = 6840000
-    local growth_rate = ((current_revenue - last_year_revenue) / last_year_revenue) * 100
+      ┌─ EXECUTIVE DASHBOARD Container
+        Total Revenue            : 12500
+        Profit Margin            : 3750
+        Customer Count           : 850
+        Market Share             : 2340
+      └───────────────────────────────────────────┘
+    ```
 
-    if growth_rate > 20 then
-        sales:add_kpi("Growth Rate (%)", growth_rate, 1) -- Value, Previous Value
-        sales:add("Status", "High Growth")
-    end
+      ## Tables
+    ```lua
+    print("\n>>> Performance Metrics\n")
+    BI.chart("table", {
+        {name = "Response Time", value = 45},
+        {name = "Uptime %", value = 9999},
+        {name = "Users", value = 1250},
+        {name = "Requests/sec", value = 320},
+    })
+    ```
+    #### Output (Generated through the Lua VM)
+    ```text
+  >>> Performance Metrics
 
-    sales:plot_kpi()
+    ┌─ chart table
+      ┌───────────────────────────────────────────────────────────┬───────────────┐
+      │ Metric                                                    │ Value         │
+      ├───────────────────────────────────────────────────────────┼───────────────┤
+      │ Response Time                                             │         45    │
+      │ Uptime %                                                  │       9999    │
+      │ Users                                                     │       1250    │
+      │ Requests/sec                                              │        320    │
+      └───────────────────────────────────────────────────────────┴───────────────┘
+    └──────────────────────────────────────────────────────────────────────────────┘
+    ```
+
+    ## Charts
+    ```lua
+    -- Test 1: Sales Dashboard
+    print("\n>>> Sales Performance Dashboard\n")
+    local sales = BI.new("Q3 2024 Sales")
+    sales:add("North", 2500)
+    sales:add("South", 1800)
+    sales:add("East", 3200)
+    sales:add("West", 2900)
+    sales:chart("bar")
+
+    -- Test 2: Product Distribution
+    print("\n>>> Product Distribution\n")
+    BI.chart("pie", {
+        {name = "Product A", value = 15000},
+        {name = "Product B", value = 23000},
+        {name = "Product C", value = 18000},
+        {name = "Product D", value = 27000},
+    })
+    ```
+    #### Output (Generated through the Lua VM)
+    ```text
+    >>> Sales Performance Dashboard
+
+      ┌─ chart bar
+        Value Distribution
+        North                     │███████████████████████████████     2500
+        South                     │██████████████████████     1800
+        East                      │████████████████████████████████████████     3200
+        West                      │████████████████████████████████████     2900
+      └──────────────────────────────────────────────────────────────────────────────┘
+
+    >>> Product Distribution
+
+      ┌─ chart pie
+        Share of Total (n=83000)
+        ████  18.1% │ Product A                                                    
+        ██████  27.7% │ Product B                                                  
+        █████  21.7% │ Product C                                                   
+        ████████  32.5% │ Product D                                                
+      └───────────────────────────────────────────┘
+
     ```
     </TabItem>
 </Tabs>

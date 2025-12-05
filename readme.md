@@ -13,7 +13,7 @@
 Build dashboards, analytical reports, and entire BI workflows using `Lua` or the purpose-built `lcore` language without the overhead of traditional enterprise tools.
 
 This monorepo houses the full `LunivCore` ecosystem: 
-- a compact C/Lua interpreter
+- a compact **C/Lua** interpreter
 - structured documentation
 - development utilities designed to deliver a fast, extensible, and highly maintainable BI platform.
 
