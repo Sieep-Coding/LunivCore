@@ -25,7 +25,7 @@ We provide a foundation for teams seeking to standardize analytics as code, acce
 
 # See It In Action
 
-LunivCore is an open-source, engineer focused alternative to [PowerBI](https://www.microsoft.com/en-us/power-platform/products/power-bi), [Juypter Notebook](https://jupyter.org/), [evidence.dev](https://evidence.dev/), [Tableau](https://www.tableau.com/), [Streamlit](https://streamlit.io/), [Shiny](https://shiny.posit.co/), and other business intelligence/reporting tool.
+LunivCore is an open-source, engineer focused alternative to [PowerBI](https://www.microsoft.com/en-us/power-platform/products/power-bi), [Jupyter Notebook](https://jupyter.org/), [evidence.dev](https://evidence.dev/), [Tableau](https://www.tableau.com/), [Streamlit](https://streamlit.io/), [Shiny](https://shiny.posit.co/), and other business intelligence/reporting tool.
 
 Instantly start answering the most important questions for your business.
 
