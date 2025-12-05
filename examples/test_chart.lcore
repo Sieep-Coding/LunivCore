@@ -4,7 +4,6 @@ text "Exploratory Analysis With LunivCore"
 
 text "Process Data"
 
-# Loading dataset with regional sales information
 dataset regional_sales "Journal #1 Data (Sales $)" {
     Midwest: 1124
     Northeast: 2545
@@ -16,7 +15,6 @@ dataset regional_sales "Journal #1 Data (Sales $)" {
 
 text "First, we need to get some basic statistics."
 
-# Statistical summary
 sum regional_sales
 avg regional_sales
 min regional_sales
@@ -25,7 +23,6 @@ count regional_sales
 
 text "Now let us visualize the data distribution"
 
-# Bar chart showing absolute sales values
 plot regional_sales as bar
 
 # Pie chart showing proportional distribution
