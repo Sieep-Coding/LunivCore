@@ -1,0 +1,38 @@
+---
+import LcoreEditor from '../components/LCoreEditor';
+
+export const frontmatter = {
+    title: 'LunivCore Web App',
+    description: 'Run high-performance analytics using the C/Wasm core.',
+    // Optional: Hide edit link for the application page
+    editLink: false
+};
+---
+
+<main>
+    <h1>LunivCore Analytics Builder</h1>
+    <p class="description">
+        Run high-performance analytics directly in the browser using the C/Wasm core.
+    </p>
+            
+    <LcoreEditor client:load />
+
+    <hr style="margin-top: 3rem;" />
+            
+    <h2>Note</h2>
+    <p>
+        Not Ready For Use
+    </p>
+</main>
+
+<style>
+    /* Custom styles for the app page */
+    main {
+        padding-top: 2rem;
+    }
+    .description {
+        font-style: italic;
+        margin-bottom: 2rem;
+        color: var(--sl-color-text-lighter);
+    }
+</style>
