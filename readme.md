@@ -168,7 +168,7 @@ Difference Q2-Q1: 70
 LunivCore generates a terminal-dashboard or website from markdown-inspired `.lcore` or `Lua` files:
 
 - **Low-level** framework engineered for integration anywhere that supports C, including microcontrollers, websites, servers, and more.
-* **Built-in Interpreter:** View the powerful [lcore](https://github.com/Sieep-Coding/LunivCore/tree/main/
+* **Built-in Interpreter:** View the powerful [lcore](https://github.com/Sieep-Coding/LunivCore/tree/main/src/C/lcore) interpreter.
 - **SQL-like statements** inside markdown-inspired files to run queries against your data sources
 - **Charts and components** are rendered using these query results
 - **Templated pages** generate many pages from a single markdown template
