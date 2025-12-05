@@ -204,7 +204,7 @@ The following table summarizes the performance as the dataset size scaled by a f
 >
 >Something lean, predictable, and fully under my control. Using C and Lua gives me that flexibility.
 >
-> This gives me the freedom to layer features on top such as Markdown rendering, web output, and anything else in deliberate manner.
+> This gives me the freedom to layer features on top such as Markdown rendering, web output, and anything else in a deliberate manner.
 >
 >  -Nick
 
