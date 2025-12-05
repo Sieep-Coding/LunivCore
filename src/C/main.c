@@ -29,7 +29,7 @@ static int is_lcore(const char *ext) {
 
 int main(int argc, char **argv) {
 
-    DP_DataSet *csv_ds = dp_dataset_load_csv("src/C/data/sample.csv");
+/*     DP_DataSet *csv_ds = dp_dataset_load_csv("src/C/data/sample.csv");
     DP_DataSet *json_ds = dp_dataset_load_json("src/C/data/sample.json");
     DP_DataSet *sqlite_ds = dp_dataset_load_sqlite("src/C/data/test.db", "test_table");
 
@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
         dp_dataset_free(sqlite_ds);
     } else {
         printf("Failed to load SQLite dataset\n");
-    }
+    } */
     const char *path = argv[1];
     const char *ext = get_extension(path);
 
