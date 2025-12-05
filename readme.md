@@ -168,21 +168,15 @@ Difference Q2-Q1: 70
 LunivCore generates a terminal-dashboard or website from markdown-inspired `.lcore` or `Lua` files:
 
 - **Low-level** framework engineered for integration anywhere that supports C, including microcontrollers, websites, servers, and more.
+* **Built-in Interpreter:** View the powerful [lcore](https://github.com/Sieep-Coding/LunivCore/tree/main/
 - **SQL-like statements** inside markdown-inspired files to run queries against your data sources
 - **Charts and components** are rendered using these query results
 - **Templated pages** generate many pages from a single markdown template
 - **Loops** and **If / Else** statements allow control of what is displayed to users
 - **Coded for Performance**: LunivCore is made with **C**, enabling high-performance.
 - **Production-Grade**: Ships with a [Lua unit testing framework.](https://github.com/Sieep-Coding/LunivCore/tree/main/src/lua/Check-Your-Lua)
-
-## LunivCore Features
-* **High Performance:** Core data structure handling and rendering implemented in C.
-* **Built-in Interpreter:** View the powerful [lcore](https://github.com/Sieep-Coding/LunivCore/tree/main/src/C/lcore) interpreter.
-* **Clean DSL:** Define datasets, add data points, and plot results using simple, object-oriented Lua syntax (`dataset:add()`, `dataset:plot()`).
-* **Extensible:** Easily add new C-backed methods (e.g., `dataset:filter()`, `dataset:calculate_average()`) to the Lua object system via Userdata and Metatables.
 * **Portable:** Built using standard C (C99) and the embeddable Lua library.
 * **Support:** On-going, lifetime support from the passionate dev team at [Luniv Technology](https://luniv.tech/)
-
 
 ## Benchmark Results
 
