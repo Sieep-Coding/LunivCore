@@ -202,7 +202,7 @@ The following table summarizes the performance as the dataset size scaled by a f
 ## Why Now?
 > I built [LunivCore](https://lunivcore.vercel.app/) after getting tired of the constraints of traditional enterprise BI platforms. 
 > 
-> Instead of relying on a Markdown-driven system like [evidence](https://github.com/evidence-dev/evidence/), I wanted a lower-level foundation. 
+> Instead of relying on a Markdown-driven system like [evidence](https://github.com/evidence-dev/evidence/), I wanted a lower-level foundation with less external dependencies. 
 >
 >Something lean, predictable, and fully under my control. Using C and Lua gives me that flexibility.
 >
