@@ -13,14 +13,19 @@
 
 # LunivCore Framework: Business Intelligence as Code
 
-Build dashboards, analytical reports, and entire BI workflows using `Lua` or the purpose-built `lcore` language without the overhead of traditional enterprise tools.
+Build dashboards, analytical reports, and entire BI workflows using `Lua` or the interpreted `lcore` language without the overhead of traditional enterprise tools.
+
+We provide a foundation for individuals, teams, and enterprises seeking to standardize analytics, accelerate experimentation, and integrate BI logic directly into their stack.
 
 This monorepo houses the full `LunivCore` ecosystem: 
-- a compact **C/Lua** interpreter
-- structured documentation
-- development utilities designed to deliver a fast, extensible, and highly maintainable BI platform.
+- a compact `lcore interpreter` written in **C/Lua**
+- structured documentation website
+- development utilities like a [Lua unit testing framework](https://github.com/Sieep-Coding/LunivCore/tree/main/src/lua/Check-Your-Lua), designed to deliver a fast, extensible, and highly maintainable BI platform.
+- Permissable [MIT LICENSE](LICENSE.md)*
+- [Examples](https://github.com/Sieep-Coding/LunivCore/tree/main/examples)
 
-We provide a foundation for teams seeking to standardize analytics as code, accelerate experimentation, and integrate BI logic directly into their application stack.
+
+*Dependencies and outside libraries subject to different licensing terms
 
 # How It Works
 
