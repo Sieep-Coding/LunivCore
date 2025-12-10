@@ -5,8 +5,11 @@
 #### A New Way to Build Data Apps: Orchestrate analytics, logic, and visualization as code.
 
 ### [**EXAMPLES**](https://github.com/Sieep-Coding/LunivCore/tree/main/examples) | [**WEBSITE**](https://lunivcore.vercel.app/) | [**LUA**](https://www.lua.org/)
-
 </div>
+
+> [!WARNING]
+> We are in alpha. Full release coming Q1/Q2 2026
+
 
 # LunivCore Framework: Business Intelligence as Code
 
